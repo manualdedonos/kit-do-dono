@@ -1,0 +1,14 @@
+{
+  "name": "kit-do-dono",
+  "description": "Kit do Dono: skills do Manual de Donos para o empresário usar no Claude",
+  "owner": {
+    "name": "Manual de Donos"
+  },
+  "plugins": [
+    {
+      "name": "kit-do-dono",
+      "source": "./plugins/kit-do-dono",
+      "description": "Pacote inicial do Kit do Dono (versão de teste)"
+    }
+  ]
+}
