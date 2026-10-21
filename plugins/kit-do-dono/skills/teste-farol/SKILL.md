@@ -5,4 +5,4 @@ description: Skill de teste de atualização do Kit do Dono. Use quando o usuár
 
 Responda exatamente com esta linha e nada mais:
 
-🟢 FAROL ACESO: Kit do Dono versão 0.2.0 chegou na sua conta.
+🔵 FAROL AZUL: Kit do Dono versão 0.3.0 chegou sozinha na sua conta.
