@@ -21,7 +21,7 @@ for area in cat["areas"]:
     if not itens:
         continue
     linhas.append(f"   **{area}**")
-    linhas += [f"   - **{s['nome']}**: {s['paraQue']}" for s in itens]
+    linhas += [f"   - **{s['nome']}**: {s['paraQue']}" + (f" (funciona no {s['onde']})" if s.get("onde") else "") for s in itens]
 boas_vindas = f"""---
 name: boas-vindas
 description: Confirma que o Kit do Dono está instalado e mostra as skills do Manual de Donos que vêm nele. Use quando o usuário disser "kit do dono", "testar o kit", "o kit está funcionando?" ou pedir para ver as skills do Manual de Donos.
@@ -39,8 +39,8 @@ Responda em português, em tom direto e acolhedor:
 os.makedirs(os.path.join(pasta_skills, "boas-vindas"), exist_ok=True)
 open(os.path.join(pasta_skills, "boas-vindas", "SKILL.md"), "w", encoding="utf-8").write(boas_vindas)
 
-campos = ("nome", "area", "paraQue", "exemplo")
-skills_js = [{k: s[k] for k in campos} for s in cat["skills"]]
+campos = ("nome", "area", "paraQue", "exemplo", "onde")
+skills_js = [{k: s[k] for k in campos if k in s} for s in cat["skills"]]
 js = ("// Gerado por scripts/gerar.py a partir de catalogo.json. Não edite à mão.\n"
       f"export const AREAS = {json.dumps(cat['areas'], ensure_ascii=False)};\n"
       f"export const SKILLS = {json.dumps(skills_js, ensure_ascii=False, indent=2)};\n")

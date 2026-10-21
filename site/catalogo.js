@@ -86,6 +86,13 @@ export const SKILLS = [
     "exemplo": "Cria um vídeo curto para o Instagram do meu negócio."
   },
   {
+    "nome": "Motion Vídeo",
+    "area": "Vendas e marketing",
+    "paraQue": "Cria vídeos de motion design em código, com som, prontos para o seu editor.",
+    "exemplo": "Cria um vídeo em motion para anunciar o meu produto.",
+    "onde": "Claude Code"
+  },
+  {
     "nome": "Experiência do Cliente",
     "area": "Operação e clientes",
     "paraQue": "Mapeia a jornada do cliente e monta o motor de recompra.",

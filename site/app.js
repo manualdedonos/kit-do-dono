@@ -213,6 +213,7 @@ function desenharVitrine() {
         <li class="skill">
           <span class="skill-icone">${asterisco}</span>
           <h4>${escapar(s.nome)}</h4>
+          ${s.onde ? `<span class="skill-onde">Funciona no ${escapar(s.onde)}</span>` : ""}
           <p>${escapar(s.paraQue)}</p>
           ${blocoCopiar(s.exemplo)}
         </li>`

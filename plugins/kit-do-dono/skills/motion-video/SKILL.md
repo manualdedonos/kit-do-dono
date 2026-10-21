@@ -1,0 +1,120 @@
+---
+name: motion-video
+description: Cria vídeos de motion design 100% em código com o motion-studio (canvas frame a frame + render headless em lotes + sons sintetizados + mixagem com música/narração). Use quando o usuário pedir um vídeo em motion, anúncio animado, vinheta, motion graphics, "um vídeo como aquele", para treinar/criar um novo ESTILO de vídeo a partir de uma referência, para levar um vídeo para o editor dele (CapCut, Premiere, DaVinci…) em camadas, ou para ajustar/re-renderizar um projeto em motion-studio/projects. Não usa Remotion.
+compatibility: Claude Code no computador (precisa de Node.js, Python 3 e Google Chrome). Não roda no chat do app.
+---
+
+# motion-video
+
+Estúdio na pasta `motion-studio/`, dentro da pasta aberta no Claude Code (onde fica `.claude/`). Todos os comandos rodam de dentro de `motion-studio/`.
+
+**Instalado pelo Kit do Dono:** o estúdio vem junto desta skill, na pasta `motion-studio/` ao lado deste SKILL.md. Se ainda não existir `motion-studio/` na pasta aberta no Claude Code, copie essa pasta para lá antes de qualquer outro passo (a pasta de plugins é só de leitura; os projetos são gravados na cópia).
+
+```
+config.json        preferências da pessoa (editor de vídeo, fonte dos sons) — ler SEMPRE no início
+engine/            engine.core.js (helpers) · engine.runtime.js (montagem/export) · player.html · sfx.py
+styles/<estilo>/   style.js (tokens: cores, fontes, fundo, transição, sons) · STYLE.md (gramática visual)
+projects/<nome>/   project.js · scenes.js · audio.json · out/ (video.mp4, final.mp4, sheet.jpg, board.png)
+templates/project/ ponto de partida de projeto novo
+tools/             render.sh · render_chunks.sh · render.mjs · check.py · camcheck.cjs · music.py · ref.sh · env.sh …
+```
+
+## 0. Primeira vez (e sempre que `config.json` tiver campos `null`)
+Leia `config.json`. Para cada campo vazio, pergunte UMA vez e grave a resposta:
+1. **Editor de vídeo** (`editor.software`): "Em qual programa você edita seus vídeos?" (CapCut, Premiere, DaVinci Resolve, Final Cut, After Effects, nenhum…).
+   - Se a pessoa usa um editor e quer receber projetos em camadas, **peça permissão para estudar o formato dos projetos dela**: ela cria no programa um projeto simples (1 vídeo + 1 áudio importados), salva e fecha; você lê a pasta/arquivo do projeto, entende a estrutura e guarda um molde em `tools/<editor>/` (`editor.molde`, `editor.estudado: true`).
+   - Descubra também **em que pasta a mídia precisa estar para o programa conseguir ler** (`editor.pasta_midia`). Ex.: o CapCut do Mac roda em sandbox e só lê dentro de `~/Movies`; mídia num SSD externo aparece como "Arquivo não acessível". Teste com um arquivo antes de entregar o primeiro projeto.
+   - Nunca altere projetos existentes da pessoa; faça backup de qualquer índice/arquivo do programa antes de registrar um projeto novo.
+2. **Efeitos sonoros** (`sfx.fonte`): "Prefere que eu gere os efeitos sonoros ou você tem uma biblioteca de sons que eu possa usar?"
+   - `sintetizado`: geradores do `engine/sfx.py` (seção 5).
+   - `biblioteca`: peça o caminho, liste os arquivos, copie/converta os escolhidos para `sfx/<pasta>/<nome>.wav` e use `["sample", frame, ganho, pan, {file:"<pasta>/<nome>"}]`. Grave o caminho em `sfx.biblioteca`.
+3. **Instalação:** se faltar `node_modules` ou o Python com numpy/scipy, rode `bash tools/setup.sh` (pede permissão antes de instalar qualquer coisa).
+
+## 1. REGRAS DE MOVIMENTO — valem para TODO estilo e formato
+Ficam acima do estilo: o STYLE.md muda a aparência, nunca estas regras.
+1. **Zero dead holds.** Nenhum elemento fica 100% parado esperando o próximo evento: câmera sempre viva (seção 1b), e todo elemento que chegou continua em *drift* (`drift` em `words`, `- prog(...,E.lin)*N` na posição, leve rotação nos cards, +3–7% de escala em pílulas/ícones).
+2. **Chegada com cauda longa**, durando até perto do próximo evento: `E.out5` / `E.smooth` / `E.push`. `inOutQ`/`inOutC` travam no fim — só em movimentos curtos e decididos.
+3. **Crescimento orgânico, nunca "pop".** Objeto não surge com escala uniforme quicando: cresce de um keyframe minúsculo, **um eixo de cada vez** (linha → lados → altura; botão → pílula → card), ancorado em quem o gera, com blur pela velocidade; o conteúdo entra só depois de a forma assentar. Use `squash()` para esticar/achatar pela velocidade.
+4. **A saída continua o momentum** da deriva (mesma direção, acelerando com `E.inC` + blur). Nunca sumir parado.
+5. **Eventos se sobrepõem:** a próxima animação começa 4–12 frames antes da anterior terminar.
+6. **Movimento rápido tem motion blur** (`smear` com a velocidade).
+7. **Transições nascem de um elemento em cena** (x/y no `TR`). Nada de fade genérico, salvo se o estilo pedir.
+8. **Molas macias** em cards (`spring({k:80,c:14})`); molas firmes (`k:200,c:15`) só em detalhes pequenos.
+9. **Loop:** fundo periódico em N frames → o último frame emenda no primeiro.
+10. **Verificar com dados:** `check.py` sem nenhum "DEAD HOLD — corrigir" ("DRIFT LENTO" intencional é ok) e `camcheck.cjs` "suave ✓".
+
+### 1b. Câmera em onda
+Zooms são ondas/curvas em S: cada aproximação ~0,5–1s para ir e outro tanto para voltar, amplitude moderada (1,3–1,45×; mais só em mergulhos/aberturas), um movimento emenda no outro sem parar. **Nunca punch-in/snap de 0,2–0,3s com pico agudo.**
+- Defina alvos `const CAM = [[t, escala, focoX, focoY, rot], ...]` e use `const cam = camPath(CAM, {sigma:.28})` + `applyCamPath(ctx, cam, t, {cx, cy})` (+ `camBlurPath(ctx, cam, t)` opcional).
+- Cenas simples sem alvos: `cam(ctx, f, a, b, 1, 1.05–1.12)` (zoom contínuo lento).
+- Antes de renderizar: `node tools/camcheck.cjs projects/<p>/scenes.js` → zoom ≲ 3 e foco ≲ 1500 px/s².
+
+## 2. REGRAS DE DESIGN — valem para todo estilo
+1. **Cantos sempre arredondados.** Nada de retângulo/placa/moldura com canto reto (raio generoso; `lineJoin`/`lineCap` round). Objeto herói em cor sólida da marca, não branco com gradiente.
+2. **Composição central:** herói no alto + texto centralizado embaixo em 3 níveis (linha pequena · palavra GRANDE · linha pequena) + elementos de apoio orbitando nas bordas. Evite texto empilhado à esquerda com imagem à direita.
+3. **Todo elemento decorativo tem sentido.** Prefira elementos reais da marca (logo, produto, interface) a formas soltas sem função.
+4. **Uma palavra-chave em destaque por frase** (cor de acento), salvo se o estilo pedir o contrário.
+
+## 3. Fluxo (barato em tokens)
+1. **Briefing numa mensagem só.** Faltou algo essencial? Pergunte tudo de uma vez: formato, duração, estilo (`ls styles/`), marca, textos/cenas, narração, música (arquivo + trecho), referência.
+2. **Storyboard em texto** (tabela: cena, tempo, headline, demonstração, transição) → espere aprovar.
+3. **Projeto:** `cp -r templates/project projects/<nome>`, edite `project.js`, escreva `scenes.js` com a API (seção 5). Leia **só** o `STYLE.md` do estilo escolhido; não leia o `engine.core.js` inteiro.
+4. **Storyboard em IMAGEM — obrigatório:** `BOARD=[[frame,'título','nota'],...]` no scenes.js → `bash tools/render.sh <nome> board` → abra `out/board.png`, confira, envie e **PARE**. Aprovar o texto NÃO autoriza o render; só renderize depois de aprovarem o board.
+5. **Preview barato** quando precisar conferir timing: `bash tools/render.sh <nome> preview` → `out/preview.jpg` (1 quadro a cada 30, 1/3 da resolução).
+6. **Render final — SEMPRE em lotes:** `bash tools/render.sh <nome>` (chama `tools/render_chunks.sh`: lotes de 120 quadros → MP4 por lote → apaga PNGs; vigia disco e RAM; mata Chromes órfãos; retoma sozinho os lotes que faltam). Rode em background. Se pausar por falta de espaço/RAM, libere e rode o mesmo comando de novo. `DIRECT=1` só para vídeo curto com máquina folgada.
+7. **Relatório:** confira o texto do `check.py`; abra `out/sheet.jpg` só se o relatório ou o usuário indicarem problema.
+8. **Ajustes de som** sem re-render: `bash tools/render.sh <nome> audio` (segundos; funciona também com narração/TIMEMAP).
+9. **Entregar:** `out/final.mp4`. Se a pessoa usa editor e pediu camadas → seção 4.
+
+**Música:** `$PY tools/music.py <mp3>` (BPM + drops em texto) → `audio.json`: `music.align: {musicTime: <drop>, frame: <momento-chave>}`. Avise sobre direitos autorais quando a música for de artista conhecido.
+**Narração:** `audio.json` → `clips:[{path, frame}]` + `voiceDuck: 0..1` (música abaixa sob a voz). Transcreva com word timestamps (mlx_whisper) e case as cenas com a fala usando `TIMEMAP=[[frameReal, frameDesenho], ...]` no scenes.js. Se a voz gerada difere do roteiro, adapte os textos da tela à voz.
+
+**Robustez:**
+- Fontes locais em `fonts/` (`fonts.files` no style.js); o render FALHA se uma fonte cair no fallback. Use só fontes com licença de uso.
+- Footage é carregado sob demanda. Em disco exFAT (unidade de alocação grande: cada JPG pequeno ocupa ~2 MB), extraia os quadros num `.dmg` HFS+: `hdiutil create -size 1500m -fs "HFS+" -volname foot motion-studio/.footage.dmg` → `hdiutil attach … -nobrowse` → extrair lá → `ln -s /Volumes/foot/<pasta> projects/<p>/assets/<pasta>` (re-montar após reiniciar).
+- Antes de renders longos: `df -m /` e `memory_pressure`; mantenha 1–2 GB livres.
+- Recorte de fundo (PNG sem fundo): `swift tools/cutout.swift <entrada> <saida.png>` (só macOS; em outros sistemas peça o PNG já recortado).
+- Print real de site para insert (celular, sem banner de cookie): `node tools/print_pagina.mjs <url> projects/<p>/assets/web/<nome>.png [--full]`.
+
+**Economia:** edite com `Edit` (nunca reescreva o scenes.js inteiro) · agrupe os ajustes numa rodada · peça e use números de frame · nada de screenshots do player (use board/preview/sheet e o texto do check) · Python sempre pelo `$PY` (`source tools/env.sh`).
+
+## 4. Entrega no editor da pessoa (camadas separadas)
+Só quando a pessoa pedir para editar no programa dela (ajustar volume, mexer em textos…), usando o que foi estudado na seção 0.
+- **Áudio em camadas:** `STEMS=1 $PY engine/sfx.py projects/<p> <fps> <frames>` → `out/stem_1-voz.wav`, `stem_2-musica.wav`, `stem_3-efeitos.wav` (mesma proporção da mixagem; a música já vem com ducking).
+- **Mídia:** copie para `editor.pasta_midia` antes de montar o projeto.
+- **CapCut (Mac)** — ferramentas prontas, com o programa FECHADO:
+  - `python3 tools/capcut_projeto.py "<Nome>" out/video.mp4 <stems...>` → projeto novo na tela inicial (vídeo + cada áudio numa faixa, tudo em 0:00; copia a mídia para dentro do projeto).
+  - `python3 tools/capcut_append.py "<Projeto>" v:"Faixa"=arq.mov a:"Voz"=voz.wav` → acrescenta camadas no fim de um projeto existente.
+  - `python3 tools/capcut_diff.py <entregue.json> <editado.json>` → o que o editor mudou à mão (use para aprender o gosto dele).
+  - `tools/capcut_build.py` + `tools/capcut_kit.py` → projetos inteiros camada por camada a partir de um kit clonado de um projeto real.
+  - O molde vem de um projeto da própria pessoa; se o CapCut atualizar e recusar o projeto, re-extraia o molde.
+- **Outros editores:** replique a mesma ideia no formato estudado (ex.: Premiere/DaVinci/Final Cut costumam importar XML/FCPXML/EDL; After Effects aceita scripts `.jsx`). Guarde o gerador em `tools/<editor>_projeto.*` e documente aqui.
+
+## 5. API da engine (globais)
+- **Constantes:** `W H FPS N` · cores `K` (escuro) `WH` (claro) `O` (acento) `B` (contraste) `CARD` · fontes `DISPLAY` `MONO`
+- **Tempo:** `prog(f,a,b,ease)` → 0..1 · `spring(f,start,{k,c})` · easings `E.lin inC outC inOutC inOutQ out5 smooth push cam` · `cb(x1,y1,x2,y2)` · `lerp clamp` · `squash(vf,f,amt,max)` → [sx,sy] pela velocidade de uma curva
+- **Cena:** `bg(ctx,f,dark)` · `cam(ctx,f,a,b,s0,s1)` · `camPath(CAM,{sigma})` → `cam(t)` · `applyCamPath(ctx,cam,t,{cx,cy,drift})` · `camBlurPath(ctx,cam,t)` · `layer(ctx,alpha,blur,L=>…)`
+- **Texto:** `words(ctx,f,[[txt,cor?],…],{x,y,size,weight,start,stagger,dur,color,exit,drift,am,ls,align})` · `logo(ctx,f,{start,exit,offset,text})` · `smear(ctx,vel,am=>draw(am))` · `penLine(ctx,x,y,w,p)`
+- **UI e vidro:** desenhe num canvas `mk(w,h)` (`rr`, `circle`, `font(peso,tam,fam)`) e chame `persp(ctx,canvas,cx,cy,{ry,rz,s,light})` · `glass(ctx,cx,cy,w,h,r,{blur,mag,edge,tint,rim,shadow,alpha})` = liquid glass (refrata o que já está pintado atrás)
+- **Assets / editorial:** `project.js` → `assets:['x.png']` (em `projects/<p>/assets/`) · `footage:{nome:N}` (de `tools/footage.sh <p> <nome> <video> <ini> <dur>`) · `IMG('x.png')` · `FOOT(nome,frameLocal,speed)` · `cover(ctx,img,x,y,w,h,{s,ox,oy})` · `footage(ctx,f,img,{a,b,s0,s1,bw,edgeBlur,dim})` · `stackText(…)` · `caption(…)` · `cutout(…)` · `photoCard(…)` · `vignette(ctx,amt,rgb,inner)` · `hash(n)`
+- **Objetos reais** (qualquer objeto: ancorado, cortado pela borda, conteúdo troca por corte seco): `phone(ctx,f,{x,y,w,start,from,dist,screen:(g,w,h,f)=>{},exit,exitDir,light})` · `statusBar(g,w,{color})` · `product(ctx,f,img,{…})` · `assemble(ctx,f,items,{t:{in,row,go}})` · `promptPill(ctx,f,txt,{…})` · `bigWord(ctx,f,txt,{…})` · `edgeIn(f,start,from,dist)`
+- **Montagem (`scenes.js`):** `SC=[{a,fn}]` · `TR=[{a,b,x,y,type?}]` (`circle` | `fade` | `wipe` | `zoomblur` | `whip`+`dir` | estilo pode usar `none` = plano único) · `SFX=[[nome,frame,ganho,pan,{opts}]]` · `TIMEMAP` (narração) · `BOARD` · `PROJECT.init`
+- **Sons (`sfx.py`)** — sintetizados:
+  - **Apple UI (padrão premium):** `swell{attack,release}` (ar que cresce e tem o pico no frame) · `haptic{f,dur}` (batida sub macia) · `glass{freq}` (clique de vidro) · `ping{f,dur}` (confirmação, use em 2–3 momentos) · `air{dur}` (brilho)
+  - clássicos: `whoosh` `pop` `click` `tick` `chime` `boom` `scribble` `shimmer` · rajadas `typing{to,step}` `clicks{to,step}` · papel: `rustle` `slap` `crinkle`
+  - biblioteca: `sample{file,rate,align:"peak"|"start"}` (arquivos em `sfx/<pasta>/<nome>.wav`; o pico cai no frame)
+  - transição ganha som automático (`style.sfx.transition`) · som novo = função em `GEN`
+
+## 6. Novo ESTILO a partir de referência ("treinar estilo")
+1. `bash tools/ref.sh <video> <dir> 10` — olhe as grades (no máximo 2–3 imagens); para movimento, analise trechos curtos quadro a quadro a 10 fps.
+2. **O movimento vem SÓ das referências** (como os objetos nascem, a câmera, o ritmo, as transições). A identidade visual da marca (IDV) dá apenas cores e fontes — nunca reaproveite a gramática de movimento de outro estilo só porque a IDV é a mesma.
+3. Extraia: paleta (hex), tipografia, fundo · gramática (encadeamento, transição, câmera) · duração por beat · tipo de easing.
+4. `cp -r styles/<mais parecido> styles/<novo>` e edite `style.js` (tokens) e `STYLE.md` (gramática + durações).
+5. Componente que não existe → adicione ao `engine.core.js` como função genérica e documente na seção 5.
+6. As seções 1 e 2 continuam valendo, sempre.
+
+## 7. Estilos incluídos
+- `tech-premium` — produto/UI em 3D, horizontal 60fps · exemplo completo em `projects/exemplo` (15s, 5 cenas, sons sincronizados)
+- `motion-apple` — widgets estilo Apple, plano único, crescimento orgânico, câmera em onda (120fps) · cores da IDV Motion Claude
+- `motion-apple-pastel` — mesma gramática do motion-apple, sem IDV: off-white, cinzas e pastéis
+Novos estilos: seção 6.
