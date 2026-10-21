@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>[TITULO DA FERRAMENTA] · [NOME DO NEGÓCIO]</title>
+<style>
+  /* ===== Identidade visual: troque só estas variáveis ===== */
+  :root {
+    --cor-marca: #E85500;        /* cor principal da marca */
+    --cor-marca-texto: #1A1A1A;  /* cor do texto em cima da cor principal (contraste) */
+    --cor-fundo: #FBF2DC;        /* fundo da página */
+    --cor-cartao: #FFFFFF;       /* fundo dos cartões */
+    --cor-texto: #1A1A1A;        /* texto principal */
+    --cor-suave: #5A5A5A;        /* texto secundário (manter contraste >= 4.5:1) */
+    --raio: 14px;
+    --fonte-titulo: Georgia, 'Times New Roman', serif;
+    --fonte-corpo: Arial, Helvetica, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body {
+    background: var(--cor-fundo); color: var(--cor-texto);
+    font-family: var(--fonte-corpo); font-size: 17px; line-height: 1.5;
+    padding: env(safe-area-inset-top, 0px) 0 env(safe-area-inset-bottom, 0px);
+  }
+  .wrap { max-width: 560px; margin: 0 auto; padding: 24px 20px 48px; }
+  .marca { font-weight: 700; letter-spacing: .08em; font-size: 13px; text-transform: uppercase; margin-bottom: 28px; }
+  h1, h2 { font-family: var(--fonte-titulo); line-height: 1.15; margin: 0 0 12px; }
+  h1 { font-size: 32px; } h2 { font-size: 24px; }
+  p { margin: 0 0 16px; }
+  .suave { color: var(--cor-suave); font-size: 15px; }
+  .cartao { background: var(--cor-cartao); border-radius: var(--raio); padding: 22px; box-shadow: 0 1px 0 rgba(0,0,0,.06); }
+  .btn {
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    width: 100%; min-height: 54px; padding: 14px 18px; border: 0; border-radius: var(--raio);
+    background: var(--cor-marca); color: var(--cor-marca-texto); font: 700 17px var(--fonte-corpo);
+    cursor: pointer; text-decoration: none; text-align: center;
+  }
+  .btn:focus-visible, .opcao:focus-visible, input:focus-visible { outline: 3px solid var(--cor-texto); outline-offset: 2px; }
+  .btn.secundario { background: transparent; color: var(--cor-texto); border: 2px solid var(--cor-texto); }
+  .btn.whats { background: #1F8F4E; color: #FFFFFF; }
+  .btn[disabled] { opacity: .45; cursor: not-allowed; }
+  .pilha { display: flex; flex-direction: column; gap: 12px; }
+  .progresso { height: 6px; background: rgba(0,0,0,.1); border-radius: 99px; overflow: hidden; margin-bottom: 8px; }
+  .progresso > div { height: 100%; background: var(--cor-marca); transition: width .25s; }
+  .contador { font-size: 13px; color: var(--cor-suave); margin-bottom: 20px; }
+  .opcao {
+    width: 100%; min-height: 54px; text-align: left; padding: 14px 16px; font: 16px var(--fonte-corpo);
+    background: var(--cor-cartao); color: var(--cor-texto); border: 2px solid rgba(0,0,0,.12); border-radius: var(--raio); cursor: pointer;
+  }
+  .opcao[aria-pressed="true"] { border-color: var(--cor-marca); box-shadow: inset 0 0 0 2px var(--cor-marca); font-weight: 700; }
+  label { display: block; font-weight: 700; margin-bottom: 6px; }
+  input[type=text], input[type=tel], input[type=number] {
+    width: 100%; min-height: 52px; padding: 12px 14px; font: 17px var(--fonte-corpo);
+    border: 2px solid rgba(0,0,0,.18); border-radius: var(--raio); background: #fff; color: var(--cor-texto);
+  }
+  .linha-check { display: flex; gap: 10px; align-items: flex-start; font-size: 14px; color: var(--cor-suave); }
+  .linha-check input { width: 22px; height: 22px; margin-top: 2px; flex-shrink: 0; }
+  .erro { color: #B00020; font-size: 14px; min-height: 20px; }
+  .destaque { font-family: var(--fonte-titulo); font-size: 48px; line-height: 1; color: var(--cor-texto); margin: 8px 0 12px; }
+  .lista { margin: 0 0 16px; padding-left: 20px; } .lista li { margin-bottom: 6px; }
+  .navegacao { display: flex; gap: 12px; margin-top: 20px; }
+  .navegacao .btn { flex: 1; }
+  .aviso { font-size: 13px; color: var(--cor-suave); margin-top: 18px; }
+  footer { text-align: center; font-size: 13px; color: var(--cor-suave); margin-top: 32px; }
+</style>
+</head>
+<body>
+<main class="wrap" id="app" aria-live="polite"></main>
+
+<script>
+/* =====================================================================
+   CONFIGURAÇÃO — a Construtora preenche este bloco a partir do briefing.
+   Nada de dado inventado: números do negócio vêm do briefing.
+   ===================================================================== */
+const CONFIG = {
+  negocio: "[NOME DO NEGÓCIO]",
+  abertura: {
+    titulo: "[PROMESSA EM UMA FRASE — ex.: Descubra quanto de tinta você precisa]",
+    subtitulo: "[O que a pessoa recebe no fim — ex.: a quantidade exata e a lista pronta]",
+    tempo: "Leva menos de 2 minutos",
+    botao: "Começar"
+  },
+  // tipos: "opcoes" (botões), "numero" (campo numérico), "texto" (campo curto)
+  perguntas: [
+    { id: "exemplo_opcoes", texto: "[Pergunta com opções]", ajuda: "",
+      tipo: "opcoes", opcoes: [
+        { rotulo: "[Opção A]", valor: "a", pontos: 0 },
+        { rotulo: "[Opção B]", valor: "b", pontos: 5 },
+        { rotulo: "[Opção C]", valor: "c", pontos: 10 }
+      ] },
+    { id: "exemplo_numero", texto: "[Pergunta numérica]", ajuda: "[ex.: em metros]",
+      tipo: "numero", min: 0, max: 1000, unidade: "m", placeholder: "Ex.: 12" }
+  ],
+  contato: {
+    pedir: true,                       // false = sem tela de contato
+    titulo: "Seu resultado está pronto",
+    texto: "Deixe seu nome e WhatsApp para ver o resultado completo.",
+    pedirNome: true,
+    pedirWhats: true,
+    consentimento: "Aceito receber o resultado e contatos de [NOME DO NEGÓCIO] pelo WhatsApp. Posso pedir para sair quando quiser."
+  },
+  whatsapp: {
+    numero: "55DDDNUMERO",             // só dígitos, com 55 + DDD. Ex.: 5521999999999
+    textoBotao: "Falar com a [NOME DO NEGÓCIO] no WhatsApp",
+    abertura: "Oi! Fiz o [TITULO DA FERRAMENTA] no site."
+  },
+  compartilhar: {
+    texto: "Fiz esse [TITULO] e achei útil:",
+  },
+  aviso: "[Aviso honesto — ex.: Estimativa para referência. Confirme as medidas com nossa equipe.]",
+  rodape: "[NOME DO NEGÓCIO] · [cidade/Instagram]"
+};
+
+/* =====================================================================
+   LÓGICA — a Construtora escreve aqui o cálculo/diagnóstico do briefing.
+   Recebe { id: valor } e devolve o objeto de resultado abaixo.
+   ===================================================================== */
+function calcularResultado(r, perguntas) {
+  // Exemplo de pontuação: soma os pontos das opções escolhidas.
+  let pontos = 0;
+  perguntas.forEach(p => {
+    if (p.tipo === "opcoes") {
+      const op = (p.opcoes || []).find(o => o.valor === r[p.id]);
+      if (op && typeof op.pontos === "number") pontos += op.pontos;
+    }
+  });
+  return {
+    titulo: "[Nome do resultado — ex.: Seu perfil: Construtor]",
+    destaque: String(pontos),          // número ou rótulo grande (ex.: "18 litros", "72/100")
+    descricao: "[Explicação do resultado, 2 a 3 frases, útil mesmo para quem não comprar.]",
+    itens: ["[Recomendação 1]", "[Recomendação 2]"],
+    ponte: "[Ponte para o produto — ex.: Separamos esses itens pra você. Chame no WhatsApp e retire hoje.]",
+    resumoWhats: "Resultado: " + pontos   // linha que vai na mensagem do WhatsApp
+  };
+}
+
+/* ===================== MOTOR (não precisa mexer) ===================== */
+const estado = { passo: -1, respostas: {}, contato: { nome: "", whats: "", aceite: false }, resultado: null };
+const app = document.getElementById("app");
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[c]));
+const total = () => CONFIG.perguntas.length;
+
+function cabecalho() { return `<div class="marca">${esc(CONFIG.negocio)}</div>`; }
+function rodape() { return CONFIG.rodape ? `<footer>${esc(CONFIG.rodape)}</footer>` : ""; }
+
+function telaAbertura() {
+  app.innerHTML = `${cabecalho()}
+    <h1>${esc(CONFIG.abertura.titulo)}</h1>
+    <p>${esc(CONFIG.abertura.subtitulo)}</p>
+    <p class="suave">${esc(CONFIG.abertura.tempo)}</p>
+    <button class="btn" id="comecar">${esc(CONFIG.abertura.botao)}</button>${rodape()}`;
+  document.getElementById("comecar").onclick = () => { estado.passo = 0; render(); };
+}
+
+function telaPergunta() {
+  const p = CONFIG.perguntas[estado.passo];
+  const pct = Math.round((estado.passo / total()) * 100);
+  const atual = estado.respostas[p.id];
+  let campo = "";
+  if (p.tipo === "opcoes") {
+    campo = `<div class="pilha" role="group" aria-label="${esc(p.texto)}">` + p.opcoes.map((o, i) =>
+      `<button class="opcao" data-i="${i}" aria-pressed="${atual === o.valor}">${esc(o.rotulo)}</button>`).join("") + `</div>`;
+  } else {
+    const tipo = p.tipo === "numero" ? "number" : "text";
+    campo = `<label for="campo">${esc(p.unidade ? "Resposta (" + p.unidade + ")" : "Sua resposta")}</label>
+      <input id="campo" type="${tipo}" ${tipo === "number" ? `inputmode="decimal" min="${p.min ?? ""}" max="${p.max ?? ""}" step="any"` : ""}
+        placeholder="${esc(p.placeholder || "")}" value="${atual !== undefined ? esc(atual) : ""}">`;
+  }
+  app.innerHTML = `${cabecalho()}
+    <div class="progresso" aria-hidden="true"><div style="width:${pct}%"></div></div>
+    <div class="contador">Pergunta ${estado.passo + 1} de ${total()}</div>
+    <h2>${esc(p.texto)}</h2>${p.ajuda ? `<p class="suave">${esc(p.ajuda)}</p>` : ""}
+    ${campo}
+    <div class="erro" id="erro" role="alert"></div>
+    <div class="navegacao">
+      <button class="btn secundario" id="voltar">Voltar</button>
+      ${p.tipo === "opcoes" ? "" : `<button class="btn" id="avancar">Continuar</button>`}
+    </div>${rodape()}`;
+  document.getElementById("voltar").onclick = () => { estado.passo -= 1; render(); };
+  if (p.tipo === "opcoes") {
+    app.querySelectorAll(".opcao").forEach(b => b.onclick = () => {
+      estado.respostas[p.id] = p.opcoes[Number(b.dataset.i)].valor; proximo();
+    });
+  } else {
+    const input = document.getElementById("campo");
+    input.focus();
+    const ir = () => {
+      const v = input.value.trim();
+      if (!v) { document.getElementById("erro").textContent = "Preencha para continuar."; return; }
+      if (p.tipo === "numero") {
+        const n = Number(v.replace(",", "."));
+        if (!isFinite(n) || (p.min !== undefined && n < p.min) || (p.max !== undefined && n > p.max)) {
+          document.getElementById("erro").textContent = `Digite um número entre ${p.min} e ${p.max}.`; return;
+        }
+        estado.respostas[p.id] = n;
+      } else { estado.respostas[p.id] = v; }
+      proximo();
+    };
+    document.getElementById("avancar").onclick = ir;
+    input.onkeydown = e => { if (e.key === "Enter") ir(); };
+  }
+}
+
+function proximo() { estado.passo += 1; render(); }
+
+function telaContato() {
+  const c = CONFIG.contato;
+  app.innerHTML = `${cabecalho()}
+    <h2>${esc(c.titulo)}</h2><p>${esc(c.texto)}</p>
+    <div class="pilha">
+      ${c.pedirNome ? `<div><label for="nome">Seu nome</label><input id="nome" type="text" autocomplete="given-name" value="${esc(estado.contato.nome)}"></div>` : ""}
+      ${c.pedirWhats ? `<div><label for="whats">Seu WhatsApp com DDD</label><input id="whats" type="tel" inputmode="tel" autocomplete="tel" placeholder="(21) 99999-9999" value="${esc(estado.contato.whats)}"></div>` : ""}
+      <label class="linha-check"><input id="aceite" type="checkbox" ${estado.contato.aceite ? "checked" : ""}> <span>${esc(c.consentimento)}</span></label>
+    </div>
+    <div class="erro" id="erro" role="alert"></div>
+    <div class="navegacao">
+      <button class="btn secundario" id="voltar">Voltar</button>
+      <button class="btn" id="ver">Ver meu resultado</button>
+    </div>${rodape()}`;
+  document.getElementById("voltar").onclick = () => { estado.passo -= 1; render(); };
+  document.getElementById("ver").onclick = () => {
+    const nome = c.pedirNome ? document.getElementById("nome").value.trim() : "";
+    const whats = c.pedirWhats ? document.getElementById("whats").value.replace(/\D/g, "") : "";
+    const aceite = document.getElementById("aceite").checked;
+    const erro = document.getElementById("erro");
+    if (c.pedirNome && nome.length < 2) { erro.textContent = "Digite seu nome."; return; }
+    if (c.pedirWhats && (whats.length < 10 || whats.length > 13)) { erro.textContent = "Digite um WhatsApp válido com DDD."; return; }
+    if (!aceite) { erro.textContent = "Marque a caixa para continuar."; return; }
+    estado.contato = { nome, whats, aceite };
+    proximo();
+  };
+}
+
+function linkWhats() {
+  const r = estado.resultado;
+  const linhas = [CONFIG.whatsapp.abertura];
+  if (estado.contato.nome) linhas.push("Meu nome é " + estado.contato.nome + ".");
+  CONFIG.perguntas.forEach(p => {
+    let v = estado.respostas[p.id];
+    if (p.tipo === "opcoes") { const op = p.opcoes.find(o => o.valor === v); v = op ? op.rotulo : v; }
+    linhas.push("• " + p.texto + " " + v + (p.unidade ? " " + p.unidade : ""));
+  });
+  linhas.push(r.resumoWhats);
+  return "https://wa.me/" + CONFIG.whatsapp.numero.replace(/\D/g, "") + "?text=" + encodeURIComponent(linhas.join("\n"));
+}
+
+function telaResultado() {
+  estado.resultado = calcularResultado(estado.respostas, CONFIG.perguntas);
+  const r = estado.resultado;
+  app.innerHTML = `${cabecalho()}
+    <div class="cartao">
+      <div class="suave">${estado.contato.nome ? esc(estado.contato.nome) + ", aqui está:" : "Seu resultado"}</div>
+      <h2>${esc(r.titulo)}</h2>
+      ${r.destaque ? `<div class="destaque">${esc(r.destaque)}</div>` : ""}
+      <p>${esc(r.descricao)}</p>
+      ${r.itens && r.itens.length ? `<ul class="lista">${r.itens.map(i => `<li>${esc(i)}</li>`).join("")}</ul>` : ""}
+      ${r.ponte ? `<p><strong>${esc(r.ponte)}</strong></p>` : ""}
+      <div class="pilha">
+        <a class="btn whats" href="${linkWhats()}" target="_blank" rel="noopener">${esc(CONFIG.whatsapp.textoBotao)}</a>
+        <button class="btn secundario" id="compartilhar">Compartilhar com alguém</button>
+        <button class="btn secundario" id="refazer">Refazer</button>
+      </div>
+      ${CONFIG.aviso ? `<p class="aviso">${esc(CONFIG.aviso)}</p>` : ""}
+    </div>${rodape()}`;
+  document.getElementById("refazer").onclick = () => { estado.passo = -1; estado.respostas = {}; render(); };
+  document.getElementById("compartilhar").onclick = async (ev) => {
+    const url = location.href;
+    try {
+      if (navigator.share) { await navigator.share({ title: document.title, text: CONFIG.compartilhar.texto, url }); return; }
+      await navigator.clipboard.writeText(CONFIG.compartilhar.texto + " " + url);
+      ev.target.textContent = "Link copiado!";
+    } catch (e) { ev.target.textContent = "Copie o link do navegador"; }
+  };
+}
+
+function render() {
+  window.scrollTo(0, 0);
+  if (estado.passo < 0) return telaAbertura();
+  if (estado.passo < total()) return telaPergunta();
+  if (CONFIG.contato.pedir && estado.passo === total()) return telaContato();
+  return telaResultado();
+}
+render();
+</script>
+</body>
+</html>

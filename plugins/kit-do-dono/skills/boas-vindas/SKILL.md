@@ -1,15 +1,34 @@
 ---
 name: boas-vindas
-description: Confirma que o Kit do Dono está instalado e mostra o que ele faz. Use quando o usuário disser "kit do dono", "testar o kit", "o kit está funcionando?" ou pedir para ver as skills do Manual de Donos.
+description: Confirma que o Kit do Dono está instalado e mostra as skills do Manual de Donos que vêm nele. Use quando o usuário disser "kit do dono", "testar o kit", "o kit está funcionando?" ou pedir para ver as skills do Manual de Donos.
 ---
+
+<!-- Gerado por scripts/gerar.py a partir de catalogo.json. Não edite à mão. -->
 
 Responda em português, em tom direto e acolhedor:
 
-1. Confirme: "O Kit do Dono está instalado e funcionando (versão 0.3.0)."
-2. Liste as skills disponíveis neste pacote, uma linha cada:
-   - **Diagnóstico de caixa**: ajuda a entender por que o caixa do mês fechou apertado ou negativo.
-   - **Preço de venda**: calcula quanto cobrar a partir do custo, das taxas e da margem.
-   - **Reunião semanal**: monta a pauta de 30 minutos com a equipe.
-   - **Cobrança gentil**: escreve mensagens para cobrar cliente atrasado sem perder o cliente.
-   - **Meta do mês**: quebra a meta em vendas por semana e por dia.
-3. Termine com um exemplo de pedido que ele pode fazer agora: "Meu caixa fechou negativo esse mês, me ajuda a entender?"
+1. Confirme: "O Kit do Dono está instalado e funcionando (versão 1.0.0), com 17 skills do Manual de Donos."
+2. Liste as skills por área, uma linha cada:
+   **IA no negócio**
+   - **Head de IA**: Descobre onde a IA rende mais no seu negócio e monta um plano priorizado.
+   - **Serviços com IA**: Aplica a tese “serviços são o novo software” e redesenha a oferta para cobrar por resultado.
+   - **Engenheiro de Prompt**: Entrevista você e entrega um prompt pronto, nas 5 camadas.
+   **Estratégia**
+   - **Modelo de Negócios**: Diagnóstico completo do modelo de negócios, com plano de melhoria.
+   - **Modelo de Assinatura**: Diz se o seu negócio tem potencial de assinatura e desenha os planos.
+   - **Radar de Concorrentes**: Mapeia a concorrência e acha as brechas de posicionamento.
+   - **Raio-X do Site**: Diagnostica a mensagem do seu site e reescreve os textos.
+   **Vendas e marketing**
+   - **Plano de Receita**: Monta de onde vem cada venda e entrega a planilha com meta e projeção.
+   - **Calendário Comercial**: Monta o calendário de vendas de 12 meses e 52 semanas.
+   - **Mecanismos de Aquisição**: Traz cases de fora e fecha com 3 apostas de 30 dias para vender mais.
+   - **Engenharia de Marketing**: Propõe ferramentas gratuitas que atraem clientes e entrega o briefing.
+   - **Construtora de Ferramentas**: Constrói a ferramenta do briefing numa página pronta para usar.
+   - **Education Marketing**: Transforma educação em canal próprio de aquisição e receita.
+   - **Vídeos Virais**: Cria um vídeo curto para as redes, do roteiro à produção.
+   **Operação e clientes**
+   - **Experiência do Cliente**: Mapeia a jornada do cliente e monta o motor de recompra.
+   - **Processos-Chave**: Acha os processos que movem o ponteiro e o gargalo do negócio.
+   **Finanças e tributos**
+   - **Reforma Tributária**: Explica o impacto da reforma no seu negócio e monta o plano de ação.
+3. Termine com um exemplo de pedido que ele pode fazer agora: "Onde a IA ajuda mais no meu negócio? Me monta um plano."
