@@ -17,7 +17,7 @@ export const SKILLS = [
     "nome": "Engenheiro de Prompt",
     "area": "IA no negócio",
     "paraQue": "Entrevista você e entrega um prompt pronto, nas 5 camadas.",
-    "exemplo": "Me ajuda a fazer um prompt para atender meus clientes."
+    "exemplo": "Me ajuda a fazer um prompt para resumir minhas reuniões."
   },
   {
     "nome": "Modelo de Negócios",
@@ -115,6 +115,12 @@ export const SKILLS = [
     "area": "Finanças e tributos",
     "paraQue": "DRE, fluxo de caixa, balanço, valuation e precificação, com decisão prática no fim.",
     "exemplo": "Me ajuda a montar a DRE do meu negócio."
+  },
+  {
+    "nome": "Criador de Agentes de Vendas",
+    "area": "Vendas e marketing",
+    "paraQue": "Lê o seu site e monta o prompt de um vendedor automático para o WhatsApp, nos 9 blocos do Manual.",
+    "exemplo": "Cria um agente de vendas para o WhatsApp da minha clínica: www.minhaclinica.com.br"
   },
   {
     "nome": "Diretor Comercial",
