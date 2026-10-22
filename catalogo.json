@@ -28,7 +28,7 @@
       "nome": "Engenheiro de Prompt",
       "area": "IA no negócio",
       "paraQue": "Entrevista você e entrega um prompt pronto, nas 5 camadas.",
-      "exemplo": "Me ajuda a fazer um prompt para atender meus clientes."
+      "exemplo": "Me ajuda a fazer um prompt para resumir minhas reuniões."
     },
     {
       "id": "expert-modelo-negocio-manual-de-donos",
@@ -145,6 +145,13 @@
       "referencias": [
         "guia-de-voz-manual-de-donos.md"
       ]
+    },
+    {
+      "id": "criador-agente-vendas-manualdedonos",
+      "nome": "Criador de Agentes de Vendas",
+      "area": "Vendas e marketing",
+      "paraQue": "Lê o seu site e monta o prompt de um vendedor automático para o WhatsApp, nos 9 blocos do Manual.",
+      "exemplo": "Cria um agente de vendas para o WhatsApp da minha clínica: www.minhaclinica.com.br"
     },
     {
       "id": "diretor-comercial-manualdedonos",

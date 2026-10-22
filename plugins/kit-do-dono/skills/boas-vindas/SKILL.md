@@ -5,7 +5,7 @@ description: Confirma que o Kit do Dono está instalado e mostra as skills do Ma
 
 Responda em português, em tom direto e acolhedor:
 
-1. Confirme: "O Kit do Dono está instalado e funcionando (versão 1.4.0), com 22 skills do Manual de Donos."
+1. Confirme: "O Kit do Dono está instalado e funcionando (versão 1.5.0), com 23 skills do Manual de Donos."
 2. Liste as skills por área, uma linha cada:
    **IA no negócio**
    - **Head de IA**: Descobre onde a IA rende mais no seu negócio e monta um plano priorizado.
@@ -25,6 +25,7 @@ Responda em português, em tom direto e acolhedor:
    - **Education Marketing**: Transforma educação em canal próprio de aquisição e receita.
    - **Vídeos Virais**: Cria um vídeo curto para as redes, do roteiro à produção. Precisa do Higgsfield conectado ao Claude.
    - **Motion Vídeo**: Cria vídeos de motion design em código, com som, prontos para o seu editor. (só no Claude Code no computador)
+   - **Criador de Agentes de Vendas**: Lê o seu site e monta o prompt de um vendedor automático para o WhatsApp, nos 9 blocos do Manual.
    - **Diretor Comercial**: Funil, aquisição de leads, ofertas, arquitetura de receita e métricas do time comercial.
    **Operação e clientes**
    - **Experiência do Cliente**: Mapeia a jornada do cliente e monta o motor de recompra.
