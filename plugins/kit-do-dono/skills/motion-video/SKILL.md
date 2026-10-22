@@ -1,10 +1,23 @@
 ---
 name: motion-video
-description: Cria vídeos de motion design 100% em código com o motion-studio (canvas frame a frame + render headless em lotes + sons sintetizados + mixagem com música/narração). Use quando o usuário pedir um vídeo em motion, anúncio animado, vinheta, motion graphics, "um vídeo como aquele", para treinar/criar um novo ESTILO de vídeo a partir de uma referência, para levar um vídeo para o editor dele (CapCut, Premiere, DaVinci…) em camadas, ou para ajustar/re-renderizar um projeto em motion-studio/projects. Não usa Remotion.
-compatibility: Claude Code no computador (precisa de Node.js, Python 3 e Google Chrome). Não roda no chat do app.
+description: "Só funciona no Claude Code no computador (não roda no chat do app). Cria vídeos animados de motion design feitos em código para o seu negócio: anúncio animado, vinheta, abertura, vídeo do produto ou do app, com textos, efeitos sonoros e música. Também cria um estilo novo a partir de um vídeo de referência e entrega o projeto em camadas para você editar no CapCut, Premiere ou DaVinci. Use só quando o dono pedir animação ou motion design de forma explícita: \"vídeo em motion\", \"anúncio animado\", \"vinheta animada com o meu logo\", \"vídeo animado do meu produto\", \"motion graphics\", \"quero um vídeo como esse\", \"cria um estilo a partir dessa referência\", \"manda em camadas pro CapCut\" ou pedir para ajustar um vídeo em motion já feito. Não use para vídeo curto de rede social que não peça animação (use Vídeos Virais) nem para copy de venda (use Diretor Comercial)."
+compatibility: "Só Claude Code no computador (macOS, Linux ou Windows com Git Bash), com terminal e acesso a arquivos. Precisa de Node.js, FFmpeg e Python 3; o setup instala numpy/scipy numa .venv e o Puppeteer com Chromium. Partes só para Mac: recorte de fundo e rotoscopia (cutout.swift, roto.swift), disco .dmg com hdiutil, vigia de RAM, projetos do CapCut para Mac e transcrição com mlx_whisper (Mac com Apple Silicon). Não roda no chat do app."
 ---
 
 # motion-video
+
+## Antes de tudo: confira onde você está
+Esta skill precisa de terminal, de acesso a arquivos e de instalar programas no computador (Node.js, FFmpeg, Python). Se você estiver no chat do app do Claude (web, desktop ou celular), sem terminal e sem a pasta do projeto aberta, **não comece**: diga ao usuário, em uma ou duas frases, que vídeo em motion só funciona no Claude Code no computador, que ele pode instalar o Claude Code no computador e fazer o mesmo pedido por lá, e pare. Não tente simular o vídeo, gerar código para ele rodar sozinho nem prometer um arquivo de vídeo.
+
+**Se o pedido for um vídeo curto para rede social e o dono não pediu animação ou motion design, não use esta skill: sugira Vídeos Virais.**
+
+**Partes só para Mac** (no Linux e no Windows o resto funciona igual; avise antes de usar e ofereça a alternativa):
+- Recorte de fundo e rotoscopia (`tools/cutout.swift`, `tools/roto.swift`): usam o Vision do macOS. Fora do Mac, peça o PNG já recortado.
+- Disco `.dmg` HFS+ com `hdiutil` para footage em exFAT: fora do Mac, extraia os quadros num disco interno com espaço.
+- Vigia de RAM do render em lotes (`vm_stat`, `memory_pressure`): fora do Mac, o render roda sem vigiar a RAM; acompanhe a memória à mão.
+- Ferramentas do CapCut (`tools/capcut_*.py`): feitas para o CapCut do Mac (pastas em `~/Movies`). Em outro sistema, trate como "outros editores" (seção 4).
+- Render em lotes (`tools/render_chunks.sh`): o próprio `setup.sh` avisa que, fora do Mac, ele pode ficar indisponível. Se falhar no Linux ou no Windows, use `DIRECT=1` só para vídeo curto e avise o usuário.
+- Transcrição com `mlx_whisper`: só em Mac com Apple Silicon e não é instalada pelo `setup.sh`. Em outra máquina, peça a permissão do usuário para usar outro transcritor com marcação de tempo por palavra, ou peça a transcrição com tempos.
 
 Estúdio na pasta `motion-studio/`, dentro da pasta aberta no Claude Code (onde fica `.claude/`). Todos os comandos rodam de dentro de `motion-studio/`.
 
@@ -28,11 +41,11 @@ Leia `config.json`. Para cada campo vazio, pergunte UMA vez e grave a resposta:
 2. **Efeitos sonoros** (`sfx.fonte`): "Prefere que eu gere os efeitos sonoros ou você tem uma biblioteca de sons que eu possa usar?"
    - `sintetizado`: geradores do `engine/sfx.py` (seção 5).
    - `biblioteca`: peça o caminho, liste os arquivos, copie/converta os escolhidos para `sfx/<pasta>/<nome>.wav` e use `["sample", frame, ganho, pan, {file:"<pasta>/<nome>"}]`. Grave o caminho em `sfx.biblioteca`.
-3. **Instalação:** se faltar `node_modules` ou o Python com numpy/scipy, rode `bash tools/setup.sh` (pede permissão antes de instalar qualquer coisa).
+3. **Instalação:** se faltar `node_modules` ou o Python com numpy/scipy, peça permissão ao usuário e rode `bash tools/setup.sh`. Ele confere Node.js, FFmpeg e Python 3 e, se faltar algum, mostra o comando de instalação e para; nesse caso, explique o que falta e espere o usuário instalar.
 
 ## 1. REGRAS DE MOVIMENTO — valem para TODO estilo e formato
 Ficam acima do estilo: o STYLE.md muda a aparência, nunca estas regras.
-1. **Zero dead holds.** Nenhum elemento fica 100% parado esperando o próximo evento: câmera sempre viva (seção 1b), e todo elemento que chegou continua em *drift* (`drift` em `words`, `- prog(...,E.lin)*N` na posição, leve rotação nos cards, +3–7% de escala em pílulas/ícones).
+1. **Nada fica congelado.** Nenhum elemento fica 100% parado esperando o próximo evento: câmera sempre viva (seção 1b), e todo elemento que chegou continua em deriva, um movimento lento e contínuo (parâmetro `drift` em `words`, `- prog(...,E.lin)*N` na posição, leve rotação nos cards, +3–7% de escala em pílulas/ícones).
 2. **Chegada com cauda longa**, durando até perto do próximo evento: `E.out5` / `E.smooth` / `E.push`. `inOutQ`/`inOutC` travam no fim — só em movimentos curtos e decididos.
 3. **Crescimento orgânico, nunca "pop".** Objeto não surge com escala uniforme quicando: cresce de um keyframe minúsculo, **um eixo de cada vez** (linha → lados → altura; botão → pílula → card), ancorado em quem o gera, com blur pela velocidade; o conteúdo entra só depois de a forma assentar. Use `squash()` para esticar/achatar pela velocidade.
 4. **A saída continua o momentum** da deriva (mesma direção, acelerando com `E.inC` + blur). Nunca sumir parado.
@@ -64,15 +77,15 @@ Zooms são ondas/curvas em S: cada aproximação ~0,5–1s para ir e outro tanto
 6. **Render final — SEMPRE em lotes:** `bash tools/render.sh <nome>` (chama `tools/render_chunks.sh`: lotes de 120 quadros → MP4 por lote → apaga PNGs; vigia disco e RAM; mata Chromes órfãos; retoma sozinho os lotes que faltam). Rode em background. Se pausar por falta de espaço/RAM, libere e rode o mesmo comando de novo. `DIRECT=1` só para vídeo curto com máquina folgada.
 7. **Relatório:** confira o texto do `check.py`; abra `out/sheet.jpg` só se o relatório ou o usuário indicarem problema.
 8. **Ajustes de som** sem re-render: `bash tools/render.sh <nome> audio` (segundos; funciona também com narração/TIMEMAP).
-9. **Entregar:** `out/final.mp4`. Se a pessoa usa editor e pediu camadas → seção 4.
+9. **Entregar:** `out/final.mp4`, na pasta do projeto (`motion-studio/projects/<nome>/out/`). Diga ao usuário o caminho completo do arquivo. Se a pessoa usa editor e pediu camadas → seção 4. Depois de entregar, pare e espere os ajustes.
 
 **Música:** `$PY tools/music.py <mp3>` (BPM + drops em texto) → `audio.json`: `music.align: {musicTime: <drop>, frame: <momento-chave>}`. Avise sobre direitos autorais quando a música for de artista conhecido.
-**Narração:** `audio.json` → `clips:[{path, frame}]` + `voiceDuck: 0..1` (música abaixa sob a voz). Transcreva com word timestamps (mlx_whisper) e case as cenas com a fala usando `TIMEMAP=[[frameReal, frameDesenho], ...]` no scenes.js. Se a voz gerada difere do roteiro, adapte os textos da tela à voz.
+**Narração:** `audio.json` → `clips:[{path, frame}]` + `voiceDuck: 0..1` (música abaixa sob a voz). Transcreva com marcação de tempo por palavra (mlx_whisper, só Mac com Apple Silicon; veja "Partes só para Mac") e case as cenas com a fala usando `TIMEMAP=[[frameReal, frameDesenho], ...]` no scenes.js. Se a voz gerada difere do roteiro, adapte os textos da tela à voz.
 
 **Robustez:**
 - Fontes locais em `fonts/` (`fonts.files` no style.js); o render FALHA se uma fonte cair no fallback. Use só fontes com licença de uso.
-- Footage é carregado sob demanda. Em disco exFAT (unidade de alocação grande: cada JPG pequeno ocupa ~2 MB), extraia os quadros num `.dmg` HFS+: `hdiutil create -size 1500m -fs "HFS+" -volname foot motion-studio/.footage.dmg` → `hdiutil attach … -nobrowse` → extrair lá → `ln -s /Volumes/foot/<pasta> projects/<p>/assets/<pasta>` (re-montar após reiniciar).
-- Antes de renders longos: `df -m /` e `memory_pressure`; mantenha 1–2 GB livres.
+- Footage é carregado sob demanda. (Só Mac) Em disco exFAT (unidade de alocação grande: cada JPG pequeno ocupa ~2 MB), extraia os quadros num `.dmg` HFS+: `hdiutil create -size 1500m -fs "HFS+" -volname foot motion-studio/.footage.dmg` → `hdiutil attach … -nobrowse` → extrair lá → `ln -s /Volumes/foot/<pasta> projects/<p>/assets/<pasta>` (re-montar após reiniciar).
+- Antes de renders longos: `df -m /` e, no Mac, `memory_pressure`; mantenha 1–2 GB livres.
 - Recorte de fundo (PNG sem fundo): `swift tools/cutout.swift <entrada> <saida.png>` (só macOS; em outros sistemas peça o PNG já recortado).
 - Print real de site para insert (celular, sem banner de cookie): `node tools/print_pagina.mjs <url> projects/<p>/assets/web/<nome>.png [--full]`.
 
@@ -115,6 +128,6 @@ Só quando a pessoa pedir para editar no programa dela (ajustar volume, mexer em
 
 ## 7. Estilos incluídos
 - `tech-premium` — produto/UI em 3D, horizontal 60fps · exemplo completo em `projects/exemplo` (15s, 5 cenas, sons sincronizados)
-- `motion-apple` — widgets estilo Apple, plano único, crescimento orgânico, câmera em onda (120fps) · cores da IDV Motion Claude
-- `motion-apple-pastel` — mesma gramática do motion-apple, sem IDV: off-white, cinzas e pastéis
+- `motion-apple` — widgets estilo Apple, plano único, crescimento orgânico, câmera em onda (120fps) · paleta própria: preto, papel e laranja
+- `motion-apple-pastel` — mesma gramática do motion-apple, com outra paleta: off-white, cinzas, pastéis e destaque verde
 Novos estilos: seção 6.

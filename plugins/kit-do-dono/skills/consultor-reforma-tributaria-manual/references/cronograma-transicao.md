@@ -1,6 +1,6 @@
 # Cronograma oficial da transição (Reforma Tributária do Consumo)
 
-Fonte: Receita Federal — "Entenda a Reforma Tributária do Consumo" (gov.br, publicado 27/06/2025, atualizado 03/07/2026). **Antes de usar em diagnóstico, confirme na internet se houve norma posterior alterando datas ou percentuais.**
+Fonte: Receita Federal — "Entenda a Reforma Tributária do Consumo" (gov.br, publicado 27/06/2025, atualizado 03/07/2026). **Data de referência deste arquivo: 03/07/2026.** Antes de usar em diagnóstico, confirme na internet se houve norma posterior alterando datas ou percentuais. Sem pesquisa na web, diga ao dono que o cronograma vale até essa data e marque o resto como "a confirmar".
 
 ## O que muda
 
@@ -30,11 +30,11 @@ Fonte: Receita Federal — "Entenda a Reforma Tributária do Consumo" (gov.br, p
 ### 2026 — Ano teste
 - Ano teste da CBS e do IBS.
 - Montante arrecadado da CBS (0,9%) e do IBS (0,1%) compensado com o valor devido de PIS e Cofins no mesmo período de liquidação.
-- Isenção da arrecadação da taxa de prova da CBS e do IBS para contribuintes que cumprirem as obrigações acessórias, conforme a legislação.
+- Quem cumprir as obrigações acessórias fica dispensado de recolher esses valores de teste da CBS e do IBS, conforme a legislação. As condições exatas da dispensa ficam a confirmar com o contador e na regulamentação vigente.
 
 ### 2027 e 2028
-- Cobrança de CBS com alíquota reduzida em 0,1 ponto percentual.
-- Cobrança de IBS com alíquota de 0,1 ponto percentual.
+- A CBS passa a ser cobrada de fato, no lugar do PIS e da Cofins. Nesses dois anos a alíquota da CBS tem um ajuste temporário ligado ao IBS de teste; o mecanismo exato e o percentual ficam a confirmar com o contador e na regulamentação vigente.
+- O IBS segue em alíquota baixa de teste (0,1% no total, a confirmar com o contador e na regulamentação vigente).
 - **Extinção do PIS e da Cofins.**
 - Redução a zero das alíquotas do IPI sobre todos os produtos, exceto os também industrializados na Zona Franca de Manaus.
 - Instituição do Imposto Seletivo (IS).

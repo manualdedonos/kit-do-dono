@@ -6,7 +6,7 @@ Este arquivo é a "régua" do Head de IA. Toda recomendação na Fase 5 deve map
 
 ## 1. Claude Chat
 
-**O que é:** A interface conversacional padrão. Onde 95% dos donos começam.
+**O que é:** A interface conversacional padrão. É onde a maioria dos donos começa.
 
 **Quando recomendar:**
 - Tarefas pontuais, criativas ou exploratórias
@@ -24,7 +24,7 @@ Este arquivo é a "régua" do Head de IA. Toda recomendação na Fase 5 deve map
 
 ## 2. Projects
 
-**O que é:** Um espaço persistente onde você sobe arquivos de contexto (PDFs, docs, briefings) e instruções customizadas. Todas as conversas dentro daquele Project já chegam com esse contexto carregado. (É exatamente onde a versão "Project" deste Head de IA mora.)
+**O que é:** Um espaço persistente onde você sobe arquivos de contexto (PDFs, docs, briefings) e instruções customizadas. Todas as conversas dentro daquele Project já chegam com esse contexto carregado.
 
 **Quando recomendar:**
 - Dono tem um workstream contínuo: um produto, um cliente, uma newsletter, um trimestre
@@ -170,9 +170,9 @@ Quando estiver na dúvida sobre que camada recomendar pra uma tarefa específica
 2. **Tem um "jeito certo" já claro?** Não → Chat + Project. Sim → segue.
 3. **Precisa de contexto persistente?** Sim → Project (sozinho ou com Skill).
 4. **Precisa puxar dados de fora?** Sim → Conector (combinado com Project/Skill).
-5. **Volume já justifica tirar humano do loop?** Sim → API/Automação. Não → Skill.
-6. **Mexe com muitos arquivos locais?** Sim → Cowork.
-7. **Mexe com código?** Sim → Claude Code.
+5. **Mexe com muitos arquivos locais?** Sim → Cowork.
+6. **Mexe com código?** Sim → Claude Code.
+7. **Volume já justifica tirar humano do loop?** Sim → API/Automação. Não → Skill.
 
 A maioria das recomendações boas é **combinação de camadas**, não uma só. Ex: *"Project com guia de estilo + Conector Notion pra puxar base de edições + Skill que monta a edição"*.
 

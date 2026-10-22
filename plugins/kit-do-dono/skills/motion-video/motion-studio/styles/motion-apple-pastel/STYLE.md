@@ -1,13 +1,13 @@
-# Estilo: motion-apple-pastel (variante sem IDV: off-white, cinza, pastel — ver também Referência 6)
+# Estilo: motion-apple-pastel (variante com paleta própria: off-white, cinza e pastel; ver também Referência 6)
 
-Motion "Apple widgets" + IDV Motion Claude. Treinado de 5 refs (pasta ESTILO APPLE): texto selecionado→pílula→card "Recharge"→pasta com cartões; "Introducing → Widgets" com grade de widgets; chat roxo→card de ingresso→"more"; landing com letras "S im pl e" se separando.
+Motion "Apple widgets" com paleta própria: off-white, cinzas e pastéis (sem o preto, papel e laranja do `motion-apple`). As cores abaixo são as de `style.js`; se mudar uma, mude nos dois. Treinado de 5 refs (pasta ESTILO APPLE): texto selecionado→pílula→card "Recharge"→pasta com cartões; "Introducing → Widgets" com grade de widgets; chat roxo→card de ingresso→"more"; landing com letras "S im pl e" se separando.
 
-## Identidade (IDV manda nas cores)
-- **Base papel `#F5F3EE`** quase chapada + vinheta suave cinza-quente (como o fundo cinza das refs). Escuro `#0A0A0A` só em 1–2 cenas de contraste.
-- **Cards/widgets `#141414`** (raio grande, ~22% do lado) ou papel elevado com sombra macia. Cantos SEMPRE arredondados.
-- **Laranja `#FF4D00`**: 1 elemento por cena (palavra, preenchimento da barra, ponto). Azul caneta `#2340C8`: seleção de texto/handles e o toast.
-- **Blob que vaza do card:** quando um card é herói, um blob da cor dele (laranja/azul) cresce atrás com blur 140px e some com ele.
-- **Tipografia:** Inter Tight 600 (headline 70–96px, tracking −3%), 800 só no "momento palavra gigante"; JetBrains Mono 700 em números/rótulos.
+## Identidade (a paleta de `style.js` manda nas cores)
+- **Base off-white `#F2F1EF`** quase chapada + vinheta suave cinza-quente. Escuro `#1D1D1F` só em texto e em 1–2 cenas de contraste.
+- **Cards/widgets brancos `#FFFFFF`** (raio grande, ~22% do lado) com sombra macia, ou cards em pastel: menta `#BFEBD4`, lilás `#D9D2F5`, pêssego `#FBD9C9`, céu `#CFE3F7`, manteiga `#F6EBB5`, rosa `#F7D3DF`, cinza `#E4E2DF`. Cantos SEMPRE arredondados.
+- **Verde `#1ED760`** (destaque): 1 elemento por cena (palavra, preenchimento da barra, ponto). Cinza `#86868B` em rótulos e texto secundário.
+- **Blob que vaza do card:** quando um card é herói, um blob da cor pastel dele cresce atrás com blur 140px e some com ele.
+- **Tipografia:** Inter 600 (headline 70–96px, tracking −3%), 800 só no "momento palavra gigante"; JetBrains Mono 700 em números/rótulos.
 
 ## Surgimento dos objetos (REGRA PRINCIPAL — aprendida das refs)
 Nada surge com POP (escala uniforme com quique). Todo objeto CRESCE a partir de um keyframe minúsculo:
@@ -22,11 +22,11 @@ Nada surge com POP (escala uniforme com quique). Todo objeto CRESCE a partir de 
 ## Gramática
 1. **Um objeto só, que se transforma.** O elemento da cena vira o da próxima: ponto → botão → pílula → card → objeto (pasta/celular). Morph por raio+tamanho com mola macia (`k:80,c:14`), sem corte.
 2. **Mão-cursor** (pointer) entra de fora, clica (escala 0.9 + anel), arrasta. Cada clique dispara a transformação.
-3. **UI viva:** números contam (mono), barras preenchem mudando de cor (laranja→verde de "pronto"), texto digita com caret.
-4. **Texto cinético:** "Introducing"→palavra; selecionar texto com handles azuis; letras que se afastam (S im pl e) e voltam; palavra repetida gigante.
+3. **UI viva:** números contam (mono), barras preenchem mudando de cor (cinza→verde de "pronto"), texto digita com caret.
+4. **Texto cinético:** "Introducing"→palavra; selecionar texto com handles em lilás; letras que se afastam (S im pl e) e voltam; palavra repetida gigante.
 5. **Grade de widgets** voando em órbita lenta ao redor da headline (parallax 3 camadas), saindo para as bordas.
-6. **Saída:** inclinação + queda/zoom do objeto com blur (continua o drift), ou o objeto encolhe até o ponto laranja → logo.
-7. **Abre e fecha com o ponto laranja** (marca Motion Claude).
+6. **Saída:** inclinação + queda/zoom do objeto com blur (continua o drift), ou o objeto encolhe até o ponto verde → logo.
+7. **Abre e fecha com o ponto verde**.
 
 ## Durações (60fps)
 Beat 40–70f · morph 18–26f · card com demo 90–140f · total 10–15s. Ritmo rápido, sem pausas.

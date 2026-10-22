@@ -7,7 +7,15 @@ Uso:
     python3 gerar_plano_receita_xlsx.py dados.json "Plano_de_Receita_<Negocio>.xlsx"
     python3 gerar_plano_receita_xlsx.py --modelo "Plano_de_Receita_MODELO.xlsx"
 
-Requer: openpyxl
+Requer: Python 3 e openpyxl.
+
+A planilha sai com fórmulas. Elas são calculadas quando o arquivo é aberto no
+Excel, Google Planilhas ou LibreOffice (o arquivo vai marcado para recalcular
+ao abrir). Não é preciso nenhum script de recálculo de outra skill. Para ter
+os números já calculados (para o chat ou para conferir), o gerador imprime o
+resumo do plano no final, usando calcular_plano.py (mesmas fórmulas, só
+Python, sem openpyxl). Para calcular sem gerar a planilha:
+    python3 calcular_plano.py dados.json
 
 ----------------------------------------------------------------------
 FORMATO DO JSON DE ENTRADA
@@ -1058,6 +1066,8 @@ def gerar(dados, saida):
 
     for ws in wb.worksheets:
         ws.freeze_panes = "A3"
+    # Marca o arquivo para recalcular todas as fórmulas ao abrir.
+    wb.calculation.fullCalcOnLoad = True
     wb.save(saida)
     return saida
 
@@ -1076,6 +1086,16 @@ def main():
         saida = args[1] if len(args) > 1 else "Plano_de_Receita.xlsx"
     gerar(dados, saida)
     print(f"OK: {saida}")
+    if dados.get("fontes"):
+        try:
+            import os
+            sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+            from calcular_plano import calcular, markdown
+            print()
+            print("Resumo calculado (mesmas fórmulas da aba 1. Plano de Receita):")
+            print(markdown(calcular(dados), dados))
+        except Exception as exc:  # o resumo é um extra; a planilha já foi salva
+            print(f"(Resumo não calculado: {exc})")
 
 
 if __name__ == "__main__":

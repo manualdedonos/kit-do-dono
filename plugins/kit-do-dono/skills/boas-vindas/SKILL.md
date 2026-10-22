@@ -3,11 +3,9 @@ name: boas-vindas
 description: Confirma que o Kit do Dono está instalado e mostra as skills do Manual de Donos que vêm nele. Use quando o usuário disser "kit do dono", "testar o kit", "o kit está funcionando?" ou pedir para ver as skills do Manual de Donos.
 ---
 
-<!-- Gerado por scripts/gerar.py a partir de catalogo.json. Não edite à mão. -->
-
 Responda em português, em tom direto e acolhedor:
 
-1. Confirme: "O Kit do Dono está instalado e funcionando (versão 1.3.0), com 22 skills do Manual de Donos."
+1. Confirme: "O Kit do Dono está instalado e funcionando (versão 1.4.0), com 22 skills do Manual de Donos."
 2. Liste as skills por área, uma linha cada:
    **IA no negócio**
    - **Head de IA**: Descobre onde a IA rende mais no seu negócio e monta um plano priorizado.
@@ -25,8 +23,8 @@ Responda em português, em tom direto e acolhedor:
    - **Engenharia de Marketing**: Propõe ferramentas gratuitas que atraem clientes e entrega o briefing.
    - **Construtora de Ferramentas**: Constrói a ferramenta do briefing numa página pronta para usar.
    - **Education Marketing**: Transforma educação em canal próprio de aquisição e receita.
-   - **Vídeos Virais**: Cria um vídeo curto para as redes, do roteiro à produção.
-   - **Motion Vídeo**: Cria vídeos de motion design em código, com som, prontos para o seu editor. (funciona no Claude Code)
+   - **Vídeos Virais**: Cria um vídeo curto para as redes, do roteiro à produção. Precisa do Higgsfield conectado ao Claude.
+   - **Motion Vídeo**: Cria vídeos de motion design em código, com som, prontos para o seu editor. (só no Claude Code no computador)
    - **Diretor Comercial**: Funil, aquisição de leads, ofertas, arquitetura de receita e métricas do time comercial.
    **Operação e clientes**
    - **Experiência do Cliente**: Mapeia a jornada do cliente e monta o motor de recompra.
@@ -36,5 +34,5 @@ Responda em português, em tom direto e acolhedor:
    - **Modelo de Gestão**: Diagnostica a fase do negócio e monta o modelo de gestão: estrutura, rituais, indicadores e governança.
    **Finanças e tributos**
    - **Reforma Tributária**: Explica o impacto da reforma no seu negócio e monta o plano de ação.
-   - **Diretor Financeiro**: DRE, fluxo de caixa, balanço, valuation, precificação e reforma tributária, 24h por dia.
+   - **Diretor Financeiro**: DRE, fluxo de caixa, balanço, valuation e precificação, com decisão prática no fim.
 3. Termine com um exemplo de pedido que ele pode fazer agora: "Onde a IA ajuda mais no meu negócio? Me monta um plano."

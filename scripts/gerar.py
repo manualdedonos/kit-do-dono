@@ -33,13 +33,11 @@ for area in cat["areas"]:
     if not itens:
         continue
     linhas.append(f"   **{area}**")
-    linhas += [f"   - **{s['nome']}**: {s['paraQue']}" + (f" (funciona no {s['onde']})" if s.get("onde") else "") for s in itens]
+    linhas += [f"   - **{s['nome']}**: {s['paraQue']}" + (f" (só no {s['onde']} no computador)" if s.get("onde") else "") for s in itens]
 boas_vindas = f"""---
 name: boas-vindas
 description: Confirma que o Kit do Dono está instalado e mostra as skills do Manual de Donos que vêm nele. Use quando o usuário disser "kit do dono", "testar o kit", "o kit está funcionando?" ou pedir para ver as skills do Manual de Donos.
 ---
-
-<!-- Gerado por scripts/gerar.py a partir de catalogo.json. Não edite à mão. -->
 
 Responda em português, em tom direto e acolhedor:
 

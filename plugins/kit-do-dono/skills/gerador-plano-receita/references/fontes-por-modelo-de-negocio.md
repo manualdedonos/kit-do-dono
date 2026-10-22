@@ -2,7 +2,7 @@
 
 Use este arquivo para **propor** a estrutura do plano ao dono em vez de deixá-lo na página em branco, e para checar se os números que ele deu fazem sentido.
 
-As faixas de conversão são referências de mercado brasileiro para PMEs. **Servem para calibrar conversa, nunca para substituir o número real do dono.** Se o número dele estiver fora da faixa, isso é assunto — não erro. Pergunte antes de concluir.
+**Todas as faixas e percentuais deste arquivo (conversão, ticket, recompra, no-show, churn) são ordem de grandeza, não dado de mercado:** vêm da experiência do Manual de Donos com PMEs brasileiras, não de uma pesquisa com fonte e data. Revisado em 22/10/2026. Ao citar ao dono, diga "ordem de grandeza; confirme com os dados do seu negócio". **Servem para calibrar conversa, nunca para substituir o número real do dono.** Se o número dele estiver fora da faixa, isso é assunto — não erro. Pergunte antes de concluir.
 
 ---
 

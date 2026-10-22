@@ -94,7 +94,7 @@ Receita bruta
 - No **Simples Nacional**, IRPJ e CSLL já estão dentro do DAS, calculado sobre o faturamento. Na DRE gerencial, trate o DAS como dedução da receita e deixe a linha de tributo sobre lucro zerada ou mínima. Confirme com o contador a alíquota efetiva da faixa e do anexo.
 - No **Lucro Presumido**, IRPJ e CSLL são calculados sobre uma base presumida da receita, não sobre o lucro real. Eles se comportam quase como um custo variável. Peça ao contador o percentual efetivo.
 - No **Lucro Real**, IRPJ e CSLL incidem sobre o lucro ajustado. Aqui a linha de tributos sobre o lucro de fato depende do resultado.
-- A **Reforma Tributária** (CBS e IBS substituindo gradualmente PIS, Cofins, ICMS, ISS e IPI) muda a linha de deduções ao longo da transição. Em qualquer projeção plurianual, peça ao contador o cronograma e as alíquotas vigentes.
+- A **Reforma Tributária** (CBS e IBS substituindo gradualmente PIS, Cofins, ICMS e ISS; o IPI tem alíquota zerada a partir de 2027, exceto para produtos também industrializados na Zona Franca de Manaus, a confirmar com o tributarista) muda a linha de deduções ao longo da transição. Em qualquer projeção plurianual, peça ao contador o cronograma e as alíquotas vigentes.
 
 ### Reconhecimento de receita
 Receita só deve entrar quando a empresa entregou o que prometeu (ou a parte proporcional) e há expectativa razoável de receber. Venda de curso anual recebida à vista é receita ao longo dos 12 meses; o restante fica como adiantamento de cliente (passivo). Erro comum em negócio digital: lançar tudo na DRE no mês da venda e achar que está muito lucrativo.

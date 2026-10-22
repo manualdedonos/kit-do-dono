@@ -1,6 +1,6 @@
 # Estilo: motion-apple
 
-Motion "Apple widgets" + IDV Motion Claude. Treinado de 5 refs (pasta ESTILO APPLE): texto selecionado→pílula→card "Recharge"→pasta com cartões; "Introducing → Widgets" com grade de widgets; chat roxo→card de ingresso→"more"; landing com letras "S im pl e" se separando.
+Motion "Apple widgets" + paleta própria (papel, preto e laranja). Treinado de 5 refs (pasta ESTILO APPLE): texto selecionado→pílula→card "Recharge"→pasta com cartões; "Introducing → Widgets" com grade de widgets; chat roxo→card de ingresso→"more"; landing com letras "S im pl e" se separando.
 
 ## Identidade (IDV manda nas cores)
 - **Base papel `#F5F3EE`** quase chapada + vinheta suave cinza-quente (como o fundo cinza das refs). Escuro `#0A0A0A` só em 1–2 cenas de contraste.
@@ -26,7 +26,7 @@ Nada surge com POP (escala uniforme com quique). Todo objeto CRESCE a partir de 
 4. **Texto cinético:** "Introducing"→palavra; selecionar texto com handles azuis; letras que se afastam (S im pl e) e voltam; palavra repetida gigante.
 5. **Grade de widgets** voando em órbita lenta ao redor da headline (parallax 3 camadas), saindo para as bordas.
 6. **Saída:** inclinação + queda/zoom do objeto com blur (continua o drift), ou o objeto encolhe até o ponto laranja → logo.
-7. **Abre e fecha com o ponto laranja** (marca Motion Claude).
+7. **Abre e fecha com o ponto laranja**.
 
 ## Durações (60fps)
 Beat 40–70f · morph 18–26f · card com demo 90–140f · total 10–15s. Ritmo rápido, sem pausas.

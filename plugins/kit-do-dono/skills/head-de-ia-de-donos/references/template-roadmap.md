@@ -2,7 +2,7 @@
 
 Use esta estrutura ao gerar o .docx na Fase 5. Lembre que esse documento é o que o dono vai **voltar a consultar nas próximas semanas** — trate como plano executivo, não como ata da conversa.
 
-Antes de gerar, leia a skill `docx` em `/mnt/skills/public/docx/SKILL.md` pra usar o estilo certo (cabeçalhos, tabelas, formatação).
+Se houver uma skill de Word disponível, use-a para a mecânica do arquivo (cabeçalhos, tabelas, formatação). Se não, gere com Python (python-docx) se houver execução de código. Se não houver, entregue o roadmap no chat, em Markdown, com esta mesma estrutura.
 
 ---
 
@@ -97,7 +97,7 @@ Plano de 30/60/90 dias em formato de cronograma simples:
 ### 7. Notas finais
 
 - Linha de "como medir sucesso" — métrica simples (horas liberadas/semana, número de tarefas que viraram sistema, etc.)
-- Linha sobre próximo checkpoint — *"Vale revisitar este roadmap em [4-6 semanas] pra ajustar com o aprendido."* (Sugira o check-in trimestral: reabrir o Project e dizer "rodei o plano, eis o que aconteceu, atualiza o diagnóstico.")
+- Linha sobre próximo checkpoint — *"Vale revisitar este roadmap em [4-6 semanas] pra ajustar com o aprendido."* (Sugira o check-in trimestral: abrir uma conversa nova colando este roadmap e dizer "rodei o plano, eis o que aconteceu, atualiza o diagnóstico.")
 - Linha de glossário se ele é iniciante (o que é Project, Skill, Conector — só se relevante)
 
 ---
@@ -118,6 +118,6 @@ Plano de 30/60/90 dias em formato de cronograma simples:
 
 `roadmap-ia-[primeiro-nome-ou-data].docx`
 
-Ex: `roadmap-ia-gabriel.docx` ou `roadmap-ia-2026-06-08.docx`.
+Ex: `roadmap-ia-joana.docx` ou `roadmap-ia-2026-06-08.docx`.
 
-Salve em `/mnt/user-data/outputs/` e use `present_files` pra entregar.
+Gere o arquivo e entregue para o usuário baixar. No chat do Claude, salve na pasta de saída da sessão; no Claude Code, salve na pasta atual do projeto. Se não for possível gerar arquivo, entregue o conteúdo completo no chat, em Markdown.

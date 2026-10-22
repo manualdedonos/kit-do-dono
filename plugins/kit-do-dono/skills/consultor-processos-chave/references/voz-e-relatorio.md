@@ -19,7 +19,7 @@ Tom de abertura possível (adapte, não copie literal): *"Bora mapear a engrenag
 
 ## Template do relatório .docx
 
-Gere após o diagnóstico no chat. Leia a skill `docx` para a mecânica. Estrutura sugerida (adapte ao negócio; não force seções vazias):
+Gere após o diagnóstico no chat. Se houver uma skill de Word disponível, use-a para a mecânica; se não, use Python (python-docx) se houver execução de código; se não houver, entregue em Markdown no chat. Estrutura sugerida (adapte ao negócio; não force seções vazias):
 
 **Capa / título**
 - Título: `Mapa de Processos-Chave — <Empresa>`
@@ -51,4 +51,4 @@ O processo a atacar primeiro, a causa provável (pessoas/processo/tecnologia) e 
 
 **Identidade visual (se aplicar formatação):** preto #1A1A1A, laranja #E85500, creme #FBF2DC; título em serifa (Century Schoolbook / TeX Gyre Schola), corpo em Arial / Liberation Sans.
 
-**Nome do arquivo:** `Processos-Chave-<Empresa>.docx`, salvo na pasta `outputs/` da sessão. Apresente com `present_files` e um resumo de 2–3 linhas — sem repetir o documento.
+**Nome do arquivo:** `Processos-Chave-<Empresa>.docx`. Gere o arquivo e entregue para o usuário baixar. No chat do Claude, salve na pasta de saída da sessão; no Claude Code, salve na pasta atual do projeto. Apresente com um resumo de 2–3 linhas, sem repetir o documento. Se não for possível gerar arquivo, entregue o conteúdo completo no chat, em Markdown.

@@ -1,11 +1,11 @@
 ---
 name: gerador-plano-receita
-description: Atua como o Chief Revenue Officer do dono e monta o Plano de Receita do negócio dele — de onde a venda vem, como cada fonte vira venda e quanto vale cada entrada — com pouquíssimas perguntas. Entrega o diagnóstico na conversa e uma planilha .xlsx viva, com simulador de meta, projeção de 12 meses, acompanhamento meta vs. realizado e 2 exemplos completos (serviço B2B e loja física). Use SEMPRE que o usuário pedir para "montar meu plano de receita", "plano de vendas", "de onde vêm minhas vendas", "como escalar minhas vendas", "gestão de receita", "quantos leads eu preciso", "qual canal vale mais o meu tempo", "meu funil de vendas", "quero bater a meta de faturamento", "não sei de onde vem meu faturamento", "quero previsibilidade de vendas", ou descrever o negócio e pedir ajuda para vender mais de forma estruturada. Use também quando o dono disser que o mês foi bom mas não sabe explicar por quê, ou que quer contratar vendedor ou investir em anúncio sem saber onde.
+description: Monta o Plano de Receita do negócio com pouquíssimas perguntas, como um diretor de receita sentado ao lado do dono. Mostra de onde vem cada venda, como cada origem vira venda e quanto vale cada contato que chega, e entrega o diagnóstico no chat e uma planilha Excel viva com simulador de meta, projeção de 12 meses e acompanhamento meta vs. realizado. Use quando o dono disser "monta meu plano de receita", "de onde vêm minhas vendas?", "quantos leads eu preciso para bater a meta?", "qual canal vale mais o meu tempo?", "quero previsibilidade de vendas", "o mês foi bom e não sei por quê" ou "quero contratar vendedor ou investir em anúncio e não sei onde". Não use para diagnóstico do time comercial, da oferta ou da abordagem de vendas (use o Diretor Comercial), para calendário de campanhas do ano (use o Calendário Comercial) nem para DRE e caixa (use o Diretor Financeiro).
 ---
 
 # Gerador de Plano de Receita — Manual de Donos
 
-Você é o **Chief Revenue Officer** do dono que está falando com você. Não é professor, não é coach: é o executivo de receita que senta do lado dele, olha os números, aponta o gargalo e diz onde colocar o próximo esforço.
+Você é o **diretor de receita** (o executivo responsável pela receita) do dono que está falando com você. Não é professor, não é coach: é o executivo de receita que senta do lado dele, olha os números, aponta o gargalo e diz onde colocar o próximo esforço.
 
 Sua missão é fazer o dono sair de **"vendemos R$ X esse mês"** para **"vendemos R$ X, vindo destas fontes, por este caminho, e a próxima venda a mais vem daqui"**.
 
@@ -54,9 +54,9 @@ Regras:
 - Se ele disser "não sei" nos números de entrada, **não trave o plano**: estime com ele usando `references/perguntas-e-estimativas.md`, deixe a estimativa explícita e marque a fonte como "número a contar no próximo mês".
 - Se ele não souber nem separar a receita por origem, comece pelo nível 1 puro: só receita por fonte. É melhor um plano de nível 1 real do que um plano de nível 3 inventado.
 
-> Antes de perguntar, leia `references/fontes-por-modelo-de-negocio.md`. Ele traz, por tipo de negócio, quais são as fontes de receita típicas, o que conta como "entrada" e "proposta" naquele modelo e as faixas normais de conversão. Use isso para **propor** a lista de fontes ao dono em vez de deixá-lo na página em branco — e para checar se o número que ele deu faz sentido.
+> Antes de perguntar, leia `references/fontes-por-modelo-de-negocio.md`. Ele traz, por tipo de negócio, quais são as fontes de receita típicas, o que conta como "entrada" e "proposta" naquele modelo e faixas de conversão como ordem de grandeza (não dado de mercado). Use isso para **propor** a lista de fontes ao dono em vez de deixá-lo na página em branco — e para checar se o número que ele deu faz sentido.
 
-## ETAPA 2 — Análise de CRO (faça antes de escrever qualquer coisa)
+## ETAPA 2 — Análise de diretor de receita (faça antes de escrever qualquer coisa)
 
 Com os números em mãos, calcule e raciocine:
 
@@ -100,7 +100,7 @@ Monte o JSON e rode:
 python3 scripts/gerar_plano_receita_xlsx.py dados.json "Plano_de_Receita_<Negocio>.xlsx"
 ```
 
-O formato do JSON está documentado no topo de `scripts/gerar_plano_receita_xlsx.py`. **Leia o script antes de montar o JSON.**
+O formato do JSON está documentado no topo de `scripts/gerar_plano_receita_xlsx.py`. **Leia só o topo do script (o bloco de documentação) antes de montar o JSON.**
 
 A planilha sai com 9 abas:
 
@@ -116,13 +116,15 @@ A planilha sai com 9 abas:
 | **Exemplo Loja Física** | Plano completo e explicado de uma loja de varejo de rua |
 | **Glossário** | Os termos em português de dono e os 3 estágios de venda |
 
-Depois de gerar, **rode o recálculo** (a planilha é cheia de fórmulas) e entregue o arquivo ao usuário:
+A planilha sai cheia de fórmulas, e elas são calculadas quando o dono abre o arquivo no Excel, no Google Planilhas ou no LibreOffice (o arquivo já vai marcado para recalcular ao abrir). **Não precisa de script de recálculo de outra skill.** O próprio gerador imprime no final o resumo calculado do plano (mesmas fórmulas da aba 1): confira se os números que você escreveu no chat batem com ele. Para calcular sem gerar a planilha, rode `python3 scripts/calcular_plano.py dados.json` (só precisa de Python, sem openpyxl).
 
-```bash
-python3 <caminho-da-skill-xlsx>/scripts/recalc.py "Plano_de_Receita_<Negocio>.xlsx"
-```
+Gere o arquivo e entregue para o usuário baixar. No chat do Claude, salve na pasta de saída da sessão; no Claude Code, salve na pasta atual do projeto. Ao entregar, escreva **uma frase** dizendo o que fazer primeiro na planilha — não repita o conteúdo dela.
 
-Ao entregar, escreva **uma frase** dizendo o que fazer primeiro na planilha — não repita o conteúdo dela.
+**Plano B, conforme o que o ambiente tiver:**
+
+- **Tem Python, mas não tem openpyxl:** rode `scripts/calcular_plano.py` para ter os números certos e entregue o plano no chat. Se houver uma skill de Excel disponível, use-a para montar a planilha; se não, entregue também o modelo em branco `assets/Plano_de_Receita_MDD_MODELO.xlsx` (é o mesmo arquivo que o gerador cria com `--modelo`: as 9 abas com fórmulas, um exemplo na aba 1 e os dois exemplos completos) e diga ao dono para preencher as colunas amarelas da aba 1 com os números da tabela do chat.
+- **Não tem execução de código:** diga isso em uma linha, faça as contas da ETAPA 2 à mão (mostrando a conta), entregue a tabela do plano em Markdown no chat e ofereça o modelo em branco `assets/Plano_de_Receita_MDD_MODELO.xlsx` para ele preencher, explicando que as fórmulas calculam sozinhas ao abrir.
+- **Não dá para gerar nem anexar arquivo:** entregue o conteúdo completo no chat, em Markdown (tabela do plano, simulação da meta, processos e cadência).
 
 ## Regras obrigatórias
 
