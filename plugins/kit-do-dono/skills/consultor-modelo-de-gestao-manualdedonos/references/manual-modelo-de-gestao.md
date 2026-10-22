@@ -128,7 +128,7 @@ Na verdade, a cultura trabalha para os resultados, ela viabiliza a alta performa
 vantagem: os resultados nesse caso são de longo prazo, são sustentáveis. Performance sem cultura geralmente
 dura pouco.
 É exatamente essa integração que um bom Modelo de Gestão consegue fazer.
-Implementar um Modelo de gestão de depende totalmente da fase do seu
+Implementar um Modelo de gestão depende totalmente da fase do seu
 negócio. Em que fase você está? Qual é a sua dor?
 Não adianta pegar o modelo de gestão completo que a Reserva usava com 20 anos de operação, quando faturava R$
 2 bilhões, com 2.800 funcionários, e aplicar num negócio em estágio inicial, na fase 1.

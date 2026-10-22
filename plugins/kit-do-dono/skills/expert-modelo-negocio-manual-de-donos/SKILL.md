@@ -96,7 +96,7 @@ Estruture o plano assim:
 
 - **A aposta (hipótese):** "Se aplicarmos [padrão], então [resultado esperado] porque [razão]."
 - **Teste mínimo:** o menor experimento possível (ex.: "testar plano de manutenção mensal com 10 clientes"), com o que medir e em quanto tempo.
-- **Métrica de sucesso e limiar:** qual número precisa bater para valer a pena escalar. Não supercalcule o a conta completa no início — nenhum plano sobrevive ao primeiro contato com o cliente.
+- **Métrica de sucesso e limiar:** qual número precisa bater para valer a pena escalar. Não supercalcule a conta completa no início — nenhum plano sobrevive ao primeiro contato com o cliente.
 - **Fases (0–90 dias):** Fase 1 (semanas 1-2: desenhar e preparar o piloto) · Fase 2 (semanas 3-8: rodar o teste, coletar dados) · Fase 3 (semanas 9-12: ler resultados, ajustar, decidir escalar/matar).
 - **Riscos e o "fumante consciente"** (quem sabe que o cigarro faz mal e continua fumando)**:** o maior risco quase nunca é técnico, é o dono não ter disciplina/coragem de executar e canibalizar o próprio modelo. Aponte isso.
 - **Quem toca:** responsável por cada frente.

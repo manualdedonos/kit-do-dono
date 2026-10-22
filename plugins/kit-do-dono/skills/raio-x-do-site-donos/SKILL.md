@@ -34,7 +34,7 @@ No fim, marque os **3 elementos que dominam visualmente** a primeira tela — s�
 
 Item inexistente: "não existe". A ausência é dado. Se você não consegue ver a página renderizada, só o texto ou o código, diga isso em uma linha e trabalhe pela ordem em que os elementos aparecem. Celular e velocidade: só analise se o dono anexar print ou dado; sem isso, peça o print em vez de supor.
 
-## Etapa 2 — cinco segundos (leitura da dobra)
+## Etapa 2 — cinco segundos (leitura da primeira tela, o que aparece sem rolar)
 
 Usando APENAS os 3 elementos dominantes, sem reler a transcrição inteira, responda como quem olhou 5 segundos e vai fechar a aba:
 

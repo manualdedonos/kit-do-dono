@@ -180,7 +180,7 @@ Prefira unidade de **entrega** (nota processada, chamado resolvido, contrato rev
 | Modelo | Como cobra | Quando usar | Exemplo |
 |---|---|---|---|
 | **1. Por unidade entregue** | R$ X por saída verificada | Primeiro passo de quase todo mundo; alto volume, saída objetiva | R$ 2,50 por nota processada e conciliada; R$ 4 por chamado resolvido sem humano |
-| **2. Base + sucesso** | Mensalidade menor + variável por resultado | Quando o cliente quer previsibilidade e você quer capturar o o ganho extra | R$ 1.500/mês + R$ 80 por lead qualificado que vira reunião |
+| **2. Base + sucesso** | Mensalidade menor + variável por resultado | Quando o cliente quer previsibilidade e você quer capturar o ganho extra | R$ 1.500/mês + R$ 80 por lead qualificado que vira reunião |
 | **3. Assinatura com SLA (nível de serviço garantido em contrato) + bônus/penalidade** | Valor fixo por um resultado garantido (prazo, taxa de erro, cobertura), com ajuste se furar | Serviço contínuo onde o cliente mede confiabilidade, não volume | Fechamento contábil até o dia 5 com erro < 0,5%: R$ 3.000/mês; atrasou, 20% de desconto |
 | **4. Por resultado de negócio** | % do valor recuperado/gerado | Só quando você controla a variável de ponta a ponta | 12% do valor recuperado em contas a receber vencidas |
 

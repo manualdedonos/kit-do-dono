@@ -129,5 +129,5 @@ Só quando a pessoa pedir para editar no programa dela (ajustar volume, mexer em
 ## 7. Estilos incluídos
 - `tech-premium` — produto/UI em 3D, horizontal 60fps · exemplo completo em `projects/exemplo` (15s, 5 cenas, sons sincronizados)
 - `motion-apple` — widgets estilo Apple, plano único, crescimento orgânico, câmera em onda (120fps) · paleta própria: preto, papel e laranja
-- `motion-apple-pastel` — mesma gramática do motion-apple, sem IDV: off-white, cinzas e pastéis
+- `motion-apple-pastel` — mesma gramática do motion-apple, com outra paleta: off-white, cinzas, pastéis e destaque verde
 Novos estilos: seção 6.

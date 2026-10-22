@@ -90,7 +90,7 @@ Achar os processos resolve metade; a outra é decidir onde a energia do **dono**
 
 | | **É CHAVE** | **NÃO É CHAVE** |
 |---|---|---|
-| **NA sua zona de potência** | **ENTRE FUNDO.** Seu founder mode. Aqui você não delega a alma: você personifica. É o pouco em que sua presença vale por dez. | **CUIDADO, é a armadilha.** Você ama fazer, faz bem, e por isso não larga — mas não move o ponteiro. Delegue, mesmo doendo. |
+| **NA sua zona de potência** | **ENTRE FUNDO.** É aqui que o dono tem de estar em pessoa. Aqui você não delega a alma: você personifica. É o pouco em que sua presença vale por dez. | **CUIDADO, é a armadilha.** Você ama fazer, faz bem, e por isso não larga — mas não move o ponteiro. Delegue, mesmo doendo. |
 | **FORA da sua zona** | **TRAGA UM DONO FORTE e acompanhe por rito.** Não é caixa-preta (você acompanha com métrica e ritual), mas quem executa é gente melhor que você naquilo. | **TIRE DO SEU PRATO JÁ.** Delegue, automatize ou elimine. É puro peso morto na sua agenda. |
 
 A maioria dos donos vive nos dois quadrantes **de baixo** (faz o que gosta e o que sobra) e foge do canto superior esquerdo — que é onde mora a alavancagem. **Sair do operacional bem feito é esvaziar a base e ir fundo no topo.**
@@ -126,7 +126,7 @@ Só de preencher a tabela, o dono enxerga na hora: **onde não tem dono, onde n�
 
 O que fazer com os processos depende da fase do negócio:
 
-- **Fase 1** — time < 10–15 pessoas, ainda não fatura ou fatura < 1M/ano. Foco: **criar o produto/serviço e vender.** É founder-led na veia: o dono é quase todos os processos, e tudo bem. **Não** monte os 6 processos formais nem organograma — venda e entregue com um padrão que encante e comece só a **anotar como você faz** (esse caderno vira o mapa da Fase 2).
+- **Fase 1** — time < 10–15 pessoas, ainda não fatura ou fatura < 1M/ano. Foco: **criar o produto/serviço e vender.** O negócio gira em torno do dono: o dono é quase todos os processos, e tudo bem. **Não** monte os 6 processos formais nem organograma — venda e entregue com um padrão que encante e comece só a **anotar como você faz** (esse caderno vira o mapa da Fase 2).
 - **Fase 2** — time > 15 pessoas, fatura 1–20M. Foco: **melhorar o serviço e escalar.** É a fase-alvo: desenhe os processos-chave com dono/métrica/rito, ache o gargalo, ponha donos fortes nos processos-chave fora da sua zona e entre fundo nos de dentro. Aqui o **organograma se ajusta ao redor dos processos**, não o contrário. É a fase de tirar o negócio das suas costas — o dono é o **arquiteto** dos processos.
 - **Fase 3** — time > 50 pessoas, fatura a partir de 20M (o porte típico desta fase fica na casa de 30–40M+). Foco: **criar a empresa e profissionalizar.** Governança dos processos e melhoria contínua já rodam; o dono entra só nos **pouquíssimos** de maior alavancagem e passa a **proteger a cultura** contra o gerente que executa ritual e não entrega. É Modelo de Gestão na veia.
 

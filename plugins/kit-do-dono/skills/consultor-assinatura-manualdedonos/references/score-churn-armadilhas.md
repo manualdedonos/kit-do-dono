@@ -25,7 +25,7 @@ Avalie cada critério no contexto do negócio. A nota final (0-10) não é médi
 
 | Tipo | Sintoma | Mitigação principal |
 |---|---|---|
-| **Por preço** | "Está caro" — geralmente significa "não vale o que custa" | Reancorar valor antes de mexer no preço; caminho para um plano menor (plano menor) em vez de cancelamento seco |
+| **Por preço** | "Está caro" — geralmente significa "não vale o que custa" | Reancorar valor antes de mexer no preço; caminho para um plano menor em vez de cancelamento seco |
 | **Por baixo uso** | Cliente não usa e cancela na fatura | Onboarding ativo nos primeiros 30 dias (ativação é a métrica-mãe); lembretes de uso; resgate proativo de inativos ANTES da renovação |
 | **Por valor não percebido** | Usa, mas não conecta o uso ao pagamento | Tornar o valor visível: resumo mensal ("você economizou R$ X", "recebeu Y itens", "usou Z vezes") |
 | **Involuntário** | Cartão expirado, limite, falha de cobrança | Dunning: retentativas automáticas, aviso pré-vencimento, múltiplos meios de pagamento, Pix recorrente. Costuma ser uma fatia grande do churn total em B2C (a faixa de 20-40% é ordem de grandeza, não dado de mercado; confirme com os dados do negócio) — é o churn mais barato de resolver |
@@ -40,9 +40,9 @@ Regra de leitura: **churn dos meses 1-3 é problema de venda/onboarding** (vende
 Para cada modelo desenhado, verifique quais destas se aplicam. Aponte só as relevantes.
 
 1. **Assinatura-forçada** — o cliente preferiria comprar avulso; a recorrência serve à empresa, não a ele. *Teste: se a compra avulsa sumisse, o cliente agradeceria ou reclamaria?* Mitigação: voltar ao objeto da recorrência — o que ele quer de novo e de novo?
-2. **Value gap** — a promessa na venda é maior que o valor sentido no mês 2. Mitigação: prometer o piso, entregar o teto; primeiro ciclo caprichado (o mês 1 define a percepção dos próximos 12).
-3. **Uso acima do plano** — clientes que usam muito destroem a margem no "ilimitado". Mitigação: fair use explícito, limites por plano, pay-per-use acima do teto. Modele o P90 de uso, não a média.
-4. **Uso abaixo do plano** — cliente usa pouco, sente desperdício, cancela. Mitigação: planos dimensionados ao uso real, rollover parcial de créditos, downgrade fácil (melhor um assinante menor que um ex-assinante).
+2. **Promessa maior que a entrega** — a promessa na venda é maior que o valor sentido no mês 2. Mitigação: prometer o piso, entregar o teto; primeiro ciclo caprichado (o mês 1 define a percepção dos próximos 12).
+3. **Uso acima do plano** — clientes que usam muito destroem a margem no "ilimitado". Mitigação: regra de uso justo escrita, limite por plano e cobrança por uso acima do teto. Modele o P90 de uso, não a média.
+4. **Uso abaixo do plano** — cliente usa pouco, sente desperdício, cancela. Mitigação: planos dimensionados ao uso real, créditos que passam parcialmente para o mês seguinte, troca fácil para um plano menor (melhor um assinante menor que um ex-assinante).
 5. **Fadiga de assinatura** — a cobrança compete com dezenas de outras no cartão. Mitigação: valor visível todo mês (ver churn por valor não percebido); anual com desconto para sair da guerra mensal do extrato.
 6. **Benefício artificial** — a empresa PIORA o produto normal para empurrar a assinatura. Destrói confiança na base inteira. Mitigação: assinatura precisa ADICIONAR valor, nunca sequestrar valor que já existia.
 7. **Desconto disfarçado** — a única vantagem é preço menor. Isso é tabela de preço com fidelização, não assinatura; atrai caçador de desconto (o pior assinante) e comprime margem. Mitigação: desconto pode existir, mas como UM dos benefícios, nunca o único.

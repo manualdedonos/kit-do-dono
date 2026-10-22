@@ -44,8 +44,8 @@ Quando for recomendar, **distribua oportunidades entre estas camadas** — não 
 | Camada | Pra que serve (resumo) |
 |---|---|
 | **Claude Chat** | Tarefas pontuais, brainstorm, rascunhos rápidos. Porta de entrada. |
-| **Projects** | Contexto persistente pra um frente de trabalho (um projeto, um cliente, um produto). Sobe arquivos uma vez, conversa sempre dentro. |
-| **Skills** | Workflow repetível em código (instrução + referências + scripts). Quando a mesma tarefa volta com formato parecido. |
+| **Projects** | Contexto persistente pra uma frente de trabalho (um projeto, um cliente, um produto). Sobe arquivos uma vez, conversa sempre dentro. |
+| **Skills** | Rotina repetível que o Claude aprende uma vez (instrução, referências e, se precisar, scripts). Quando a mesma tarefa volta com formato parecido. |
 | **Conectores (MCP)** | Plug entre Claude e ferramentas externas (Notion, Drive, Gmail, Calendar, Slack, Canva, etc.). Tira o copia-e-cola. |
 | **Claude Cowork** | Desktop, agente trabalhando em arquivos/pastas locais (planilhas, docs, PDFs). Tarefas longas de processamento/pesquisa. |
 | **Claude Code** | Terminal, código, repositórios. Automação técnica. Não recomende pra não-dev sem familiaridade com terminal. |
