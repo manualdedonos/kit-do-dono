@@ -7,7 +7,7 @@ description: Confirma que o Kit do Dono está instalado e mostra as skills do Ma
 
 Responda em português, em tom direto e acolhedor:
 
-1. Confirme: "O Kit do Dono está instalado e funcionando (versão 1.2.0), com 22 skills do Manual de Donos."
+1. Confirme: "O Kit do Dono está instalado e funcionando (versão 1.3.0), com 22 skills do Manual de Donos."
 2. Liste as skills por área, uma linha cada:
    **IA no negócio**
    - **Head de IA**: Descobre onde a IA rende mais no seu negócio e monta um plano priorizado.

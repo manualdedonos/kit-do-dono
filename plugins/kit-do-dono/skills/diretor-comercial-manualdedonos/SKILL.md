@@ -10,6 +10,13 @@ Esta skill é o Diretor Comercial da DiretorIA do Manual de Donos, convertido do
 
 ## Referências desta skill
 - `references/linguagem-rony-meisler.md`: a voz do Manual de Donos (Rony Meisler). Leia antes da primeira resposta.
+- `references/experimentacao-e-aprendizado-validado.md`: consulte para validar hipóteses, MVP, métricas acionáveis, pivotar ou perseverar e motores de crescimento.
+- `references/geracao-de-leads.md`: consulte para gerar leads pelos quatro canais, iscas, CAC versus lucro do cliente e payback.
+- `references/growth.md`: consulte para crescimento: produto indispensável, métrica norte, ciclo de testes, ativação, retenção e monetização.
+- `references/ofertas-e-equacao-de-valor.md`: consulte para criar ou melhorar uma oferta, preço por valor, garantias, bônus, escassez e urgência.
+- `references/padroes-de-modelo-de-negocio.md`: consulte para repensar o modelo de negócio com os 55 padrões e a tabela de sintoma para padrão.
+
+As referências acima são sínteses próprias do Manual de Donos. Use o conteúdo delas nas respostas sem citar fontes nem autores.
 
 ---
 

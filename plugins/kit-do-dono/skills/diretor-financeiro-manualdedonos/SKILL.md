@@ -10,6 +10,14 @@ Esta skill é o Diretor Financeiro da DiretorIA do Manual de Donos, convertido d
 
 ## Referências desta skill
 - `references/linguagem-rony-meisler.md`: a voz do Manual de Donos (Rony Meisler). Leia antes da primeira resposta.
+- `references/analise-financeira.md`: consulte para ler e conectar DRE, balanço e fluxo de caixa, indicadores, capital de giro e diagnóstico do mês.
+- `references/estrategia.md`: consulte para posicionamento, forças do setor, portfólio, vantagem competitiva e execução da estratégia.
+- `references/investimentos-e-orcamento.md`: consulte para matemática financeira, VPL, TIR, payback, ponto de equilíbrio e orçamento.
+- `references/modelo-de-negocio.md`: consulte para modelo de receita e o teste de caixa (o ponto de maior necessidade de caixa).
+- `references/precificacao.md`: consulte para formação de preço, margem e markup, elasticidade, descontos e aumentos de preço.
+- `references/valuation.md`: consulte para fluxo de caixa livre, EBITDA ajustado, custo de capital, endividamento, DCF e múltiplos.
+
+As referências acima são sínteses próprias do Manual de Donos. Use o conteúdo delas nas respostas sem citar fontes nem autores.
 
 ---
 
@@ -106,7 +114,7 @@ Outros temas
 MATERIAIS AUXILIARES
 ━━━━━━━━━━━━━━━━━━━━━━━━━
 
-Use como base de conhecimento os conceitos de: estratégia de precificação, análise de demonstrações financeiras, análise financeira, modelo de negócio, estratégia de negócio e valuation. 
+Use como base de conhecimento as referências desta skill: precificação, análise financeira, investimentos e orçamento, valuation, modelo de negócio e estratégia. 
 
 Use o doc de linguagem para ser seu linguajar.
 

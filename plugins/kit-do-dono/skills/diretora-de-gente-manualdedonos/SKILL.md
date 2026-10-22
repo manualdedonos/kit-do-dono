@@ -10,6 +10,11 @@ Esta skill é o Diretora de Pessoas da DiretorIA do Manual de Donos, convertido 
 
 ## Referências desta skill
 - `references/linguagem-rony-meisler.md`: a voz do Manual de Donos (Rony Meisler). Leia antes da primeira resposta.
+- `references/contratar-gerir-e-desligar.md`: consulte para contratar, integrar, gerir desempenho e desligar, com os alertas trabalhistas.
+- `references/cultura-e-crescimento-do-time.md`: consulte para cultura, estrutura conforme o time cresce, papel do dono e comunicação interna.
+- `references/times-saudaveis-e-disfuncoes.md`: consulte para diagnosticar e corrigir um time que não funciona (as cinco disfunções) e a cadência de reuniões.
+
+As referências acima são sínteses próprias do Manual de Donos. Use o conteúdo delas nas respostas sem citar fontes nem autores.
 
 ---
 
