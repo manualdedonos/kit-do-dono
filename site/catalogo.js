@@ -82,7 +82,7 @@ export const SKILLS = [
   {
     "nome": "Vídeos Virais",
     "area": "Vendas e marketing",
-    "paraQue": "Cria um vídeo curto para as redes, do roteiro à produção.",
+    "paraQue": "Cria um vídeo curto para as redes, do roteiro à produção. Precisa do Higgsfield conectado ao Claude.",
     "exemplo": "Cria um vídeo curto para o Instagram do meu negócio."
   },
   {
@@ -113,7 +113,7 @@ export const SKILLS = [
   {
     "nome": "Diretor Financeiro",
     "area": "Finanças e tributos",
-    "paraQue": "DRE, fluxo de caixa, balanço, valuation, precificação e reforma tributária, 24h por dia.",
+    "paraQue": "DRE, fluxo de caixa, balanço, valuation e precificação, com decisão prática no fim.",
     "exemplo": "Me ajuda a montar a DRE do meu negócio."
   },
   {

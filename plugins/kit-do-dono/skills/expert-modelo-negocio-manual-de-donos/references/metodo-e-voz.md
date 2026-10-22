@@ -1,7 +1,7 @@
 # Método, Voz e Template — Expert em Modelo de Negócios (Manual de Donos)
 
 Índice:
-1. A base teórica (St. Gallen / Business Model Navigator)
+1. A base teórica (pesquisa da Universidade de St. Gallen)
 2. As 4 fases do diagnóstico aprofundado
 3. Similaridade vs. Confrontação
 4. Transferir / Combinar / Alavancar
@@ -11,19 +11,19 @@
 
 ---
 
-## 1. A base teórica (St. Gallen / Business Model Navigator)
+## 1. A base teórica (pesquisa da Universidade de St. Gallen)
 - Pesquisa de St. Gallen: ~250 modelos de sucesso ao longo de 25 anos. Conclusão: **mais de 90% das inovações de modelo não foram inventadas do zero** — são recombinações de **55 padrões** que já funcionavam em outras indústrias.
 - Um modelo de negócio = configuração das 4 dimensões **QUEM–O QUÊ–COMO–POR QUÊ** (o "Triângulo Mágico"). QUEM e O QUÊ são as faces externas (mercado); COMO e POR QUÊ são as internas (operação e economia).
 - **Regra de ouro:** há inovação de modelo quando se muda **≥2 das 4 dimensões** ao mesmo tempo. Uma só = melhoria de produto/processo, fácil de copiar.
 - As 4 dimensões são **interdependentes**: mexer numa obriga a reajustar as outras (por isso "Triângulo Mágico").
 
 ## 2. As 4 fases do diagnóstico aprofundado
-Quando o caso pede profundidade, conduza nestas quatro fases (do Navigator):
+Quando o caso pede profundidade, conduza nestas quatro fases:
 
 1. **Iniciação — analise o ecossistema.** Descreva o modelo atual e mapeie atores (clientes atuais/potenciais, parceiros, concorrentes, fornecedores) e vetores de mudança (megatrends, tecnologias, regulação). Nomeie a **lógica dominante do setor** — o que "todos fazem e ninguém questiona". Olhe de "30 mil pés".
 2. **Ideação — adapte os padrões.** Confronte o modelo com os 55 padrões (similaridade + confrontação). Gere muitas ideias antes de filtrar; quantidade antes de qualidade; sem matar ideia cedo.
 3. **Integração — dê forma coerente.** Garanta **consistência interna** (harmonia entre QUEM/O QUÊ/COMO/POR QUÊ) e **consistência externa** (encaixe com ambiente, tendências, stakeholders). Itere até o sistema fechar.
-4. **Implementação — realize.** Protótipo → teste pequeno → aprende → ajusta → escala. "Falhe rápido e cedo." Apoio do topo é inegociável; o maior risco é a resistência interna (o "fat smoker": sabe o risco, tem a solução, falta disciplina).
+4. **Implementação — realize.** Protótipo → teste pequeno → aprende → ajusta → escala. "Falhe rápido e cedo." Apoio do topo é inegociável; o maior risco é a resistência interna (o "fumante consciente": sabe o risco, tem a solução, falta disciplina).
 
 ## 3. Similaridade vs. Confrontação
 - **Similaridade:** usar padrões de setores **próximos/análogos**. Mais estruturado e seguro; bom quando o problema é bem definido. Lema: "perca a familiaridade com o que você conhece."
@@ -57,7 +57,7 @@ Calibre a intensidade ao contexto: se o dono está claramente fragilizado ou é 
 ---
 
 ## 7. Template do relatório .docx
-Gere o Word seguindo a skill `docx`. Estrutura obrigatória (adapte títulos ao nome da empresa):
+Gere o Word com a skill de Word disponível (ou python-docx; sem execução de código, entregue em Markdown no chat). Estrutura obrigatória (adapte títulos ao nome da empresa):
 
 ```
 # Diagnóstico de Modelo de Negócios — <Empresa>
@@ -81,9 +81,9 @@ Gere o Word seguindo a skill `docx`. Estrutura obrigatória (adapte títulos ao 
 ## 5. Plano de implementação (0–90 dias)
    - A aposta (hipótese): "Se aplicarmos X, então Y, porque Z."
    - Teste mínimo: menor experimento + o que medir + prazo.
-   - Métrica de sucesso e threshold de escala.
+   - Métrica de sucesso e limiar para escalar.
    - Fases: 1 (sem 1-2) · 2 (sem 3-8) · 3 (sem 9-12). Tabela ação · responsável · prazo · métrica.
-   - Riscos (incl. o "fat smoker" / resistência interna).
+   - Riscos (incl. o "fumante consciente" / resistência interna).
 
 ## 6. A Tarefa da Semana + A pergunta que fica
    Uma ação concreta de ≤40 min e uma provocação final.

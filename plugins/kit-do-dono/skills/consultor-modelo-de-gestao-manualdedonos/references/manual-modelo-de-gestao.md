@@ -2,30 +2,20 @@
 
 > Conteúdo do Manual de Donos (acesso.manualdedonos.com/p/manual-de-negocios-04), extraído do PDF.
 
-Como implementar e começar um Modelo de Gestão [Manual de Negócios 04]
-Como implementar e começar um
-Modelo de Gestão [Manual de
-Negócios 04]
 Tudo que você precisa saber sobre Modelo de Gestão, como começar e o que fazer de acordo com a
 fase do seu negócio.
-Jayme Nigri Moszkowicz
-May 5, 2026 • 7 min read
 Fala, Dono. Fala, Dona.
 Esse é o 4º Manual de Negócios. A promessa é uma só:
 História real. Framework aplicável. Manual de Implementação. Tarefa da semana.
 Assunto de hoje: Modelo de Gestão.
 Sem enrolação, direto ao ponto, mão na massa. Com manual escrito e em vídeo. Bora.
-Como implementar e começar com um Modelo de
-Como implementar e começar com um Modelo de
-Introduzindo Modelo de Gestão [Manual de Negócios 04]
 
 1. A história
 2. O Aprendizado
 3. O Framework
 4. Insight desta edição
 5. O Manual de Implementação
-6. Para ir mais fundo
-7. Principais insights e a pergunta que fica
+6. Principais insights e a pergunta que fica
 A Reserva sempre foi uma empresa com DNA muito forte de vendas.
 Por muito tempo, a divisão da Cia. era muito simples: vendas e demais áreas.
 E funcionava bem. Têm momentos que deve ser assim mesmo, principalmente na fase 1 que é a construção do
@@ -58,7 +48,6 @@ Mas não dá para se garantir só na vontade. Tem que vir junto com organizaçã
 ESTRUTURA DO MANUAL
 A HISTÓRIA
 O APRENDIZADO
-Introduzindo Modelo de Gestão [Manual de Negócios 04]
 
 Ficou claro que precisávamos criar uma estrutura para garantir o que já tínhamos feito e suportar o
 crescimento que viria.
@@ -101,7 +90,6 @@ em primeiro lugar (não sócios ou executivos), com PESSOAS boas tecnicamente, a
 na posição certa, é possível atingir alta PERFORMANCE. E performance aqui me refiro aos resultados de longo prazo
 e sustentáveis.
 O FRAMEWORK
-Introduzindo Modelo de Gestão [Manual de Negócios 04]
 
 Abaixo, você encontra o nosso framework completo de Modelo de Gestão. Falaremos muito desse desenho no
 Manual de Donos. Tudo parte ou está conectado a ele. Infelizmente, não tem como aprofundarmos tudo num único
@@ -112,7 +100,6 @@ Valores > Propósito > Gente + Modelo de negócios/Estratégia > Desempenho
 Veja com atenção o modelo, principalmente aonde ele começa, sua base (Valores & Propósito), até onde termina, nas
 “consequências” e ações fins.
 ps: No vídeo explicativo do Manual, destrinchamos o frame com mais detalhes.
-Introduzindo Modelo de Gestão [Manual de Negócios 04]
 
 Obviamente a sofisticação do modelo vai depender do estágio da empresa, das pessoas e da cultura. Até na
 Fase 1, com um negócio novo, você não precisa de cada elemento desse modelo.
@@ -125,7 +112,6 @@ Não é para engessar. O objetivo é justamente ganhar velocidade.
 Não é método pelo método. Não importa o que está no livro, se chama OKR, KPI, Balanced
 Scorecard. Importa o que funciona para sua empresa.
 Deve ser simples; não pode ser mais sofisticado do que a real necessidade da empresa.
-Introduzindo Modelo de Gestão [Manual de Negócios 04]
 
 É vivo: precisa ser revisitado, aprimorado e adaptado a todo momento.
 Falhas vão acontecer. O que importa é identificar rápido, corrigir e aprender, mas nunca abandonar.
@@ -149,19 +135,11 @@ Não adianta pegar o modelo de gestão completo que a Reserva usava com 20 anos 
 Você precisa adaptar o modelo pro seu estágio, pra resolver a sua dor e não criar um novo problema.
 No framework abaixo, detalhamos exatamente o que você deve aplicar do Modelo de Gestão, de acordo com cada
 fase do seu negócio. Foque na sua fase.
-INSIGHT DESTA EDIÇÃO
-O MANUAL DE IMPLEMENTAÇÃO
-Introduzindo Modelo de Gestão [Manual de Negócios 04]
 
 O mais importante disso tudo: o modelo trabalha para o negócio, não o contrário. Se está engessando, travando ou
 burocratizando, algo está errado. Revisa o modelo de gestão, o “COMO", mas não o abandona.
-📚 ”Walking the Talk: A Cultura através do exemplo”, Carolyn Taylor
-📚 “A regra é não ter regras”, Reed Hasting, Erin Meyer
-📰 “A dura verdade sobre culturas inovadoras”, Harvard Business Review
-📚 “Avalie o Que Importa”, John Doerr
-PRA IR MAIS FUNDO
-Introduzindo Modelo de Gestão [Manual de Negócios 04]
 
+PRINCIPAIS INSIGHTS E A PERGUNTA QUE FICA
 A venda puxa a operação, mas o gap não pode ser grande. Retaguarda precária vira teto de
 crescimento.
 Solução heroica não é modelo de gestão. Só no amor, na raça e na vontade não é suficiente no longo
@@ -177,21 +155,3 @@ TEM que dar exemplo.
 A pergunta que fica:
 Sua empresa pode ter cultura, pode ter venda, mas tem gestão? Ou ainda depende de você para que
 tudo ande?
-Indique o Manual de Donos para um amigo.
-Manda pra aquele amigo dono. Aquele que você sabe que tá precisando.
-QUERO COMPARTILHAR O MANUAL
-Responsa essa pesquisa de 2 minutos.
-O objetivo dela é um só: melhorar o Manual pra você e pra toda a comunidade.
-Responder pesquisa rápida
-⭐  Em uma escala de 0 a 10, qual a probabilidade de você recomendar essa
-edição a um amigo ou colega?
-1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10
-Tem algum feedback? Algum insight relevante? Responde esse e-mail. Lemos tudo. Respondemos tudo.
-Responda esse e-mail, ou mande um WhatsApp pro número abaixo.
-Fale com a gente
-PRINCIPAIS INSIGHTS E A PERGUNTA QUE FICA
-PRA FECHAR BEM…
-ACHA QUE VALEU?
-QUEREMOS TE CONHECER MELHOR…
-FICOU COM DÚVIDA?
-Introduzindo Modelo de Gestão [Manual de Negócios 04]

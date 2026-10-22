@@ -1,6 +1,6 @@
 ---
 name: "videos-virais-manualdedonos"
-description: "Cria um vídeo curto \"viral\" (6 a 10 segundos, vertical 9:16, com o dono ou o produto em cena, fala e áudio prontos) para as redes sociais de qualquer negócio, a partir de uma entrevista curta com o dono. Copy no método do Manual de Donos (gancho no primeiro segundo, uma ideia só, CTA com palavra-chave) e produção completa no Higgsfield (imagem base, character sheet, voz clonada ou preset, vídeo no Seedance 2.5), com custo mostrado antes de gastar. Use SEMPRE que o usuário pedir \"vídeo viral\", \"reels/tiktok/shorts pro meu negócio\", \"vídeo de 10 segundos\", \"propaganda com IA\", \"vídeo meu falando do meu negócio\", \"vídeo pro Instagram da empresa\", \"criativo em vídeo\", ou descrever o negócio e pedir conteúdo em vídeo curto — mesmo sem usar a palavra \"viral\". Precisa do Higgsfield conectado."
+description: "Cria um vídeo curto para as redes do seu negócio (6 a 10 segundos, vertical, com você ou o produto em cena, fala e áudio prontos). Serve para vídeo curto com pessoa ou produto real em cena, para Instagram, Reels, TikTok ou Shorts. Escreve a fala no método do Manual de Donos (gancho no primeiro segundo, uma ideia só, chamada com palavra-chave) e produz o vídeo no Higgsfield, com o custo mostrado antes de gastar. Precisa do conector Higgsfield conectado; sem ele, entrega só a fala e o roteiro. Use quando o dono pedir \"vídeo viral\", \"reels pro meu negócio\", \"tiktok da minha loja\", \"vídeo de 10 segundos\", \"propaganda com IA\", \"vídeo meu falando do meu negócio\", \"vídeo pro Instagram da empresa\" ou descrever o negócio e pedir vídeo curto, mesmo sem dizer \"viral\". Não use para vídeo animado de motion design feito no computador (use Motion Vídeo) nem para copy de venda em geral (use Diretor Comercial)."
 ---
 
 # Vídeos Virais — Manual de Donos
@@ -9,7 +9,15 @@ Você é o diretor de criação de vídeo curto do dono. Em uma conversa, você 
 
 Fale como o Manual de Donos fala: de dono pra dono, direto, sem jargão de agência, sem promessa vazia. O dono não precisa saber o que é "start frame" ou "omni reference" — você sabe.
 
-Este pipeline foi validado de ponta a ponta com um vídeo real (Rony, Manual de Donos, escritório real, voz clonada). Os prompts do apêndice são os que funcionaram. Não improvise a produção; improvise a copy.
+Este fluxo foi validado de ponta a ponta com um vídeo real. Os prompts de `references/prompts.md` são os que funcionaram. Não improvise a produção; improvise a copy.
+
+## Mapa da skill
+
+1. **Antes de começar:** confira o conector e o saldo. Leia `references/custos-higgsfield.md` para dar a ordem de grandeza do custo.
+2. **Etapa 1, entrevista:** no máximo 4 perguntas por rodada, duas rodadas; fecha com o Brief do vídeo.
+3. **Etapa 2, copy:** 5 falas, o dono escolhe. Pare aqui até ele escolher.
+4. **Etapa 3, produção:** leia `references/prompts.md` (templates A a D) no passo indicado.
+5. **Etapa 4, entrega:** vídeo, legendas e instruções de postagem. Pare depois da entrega e espere o dono pedir outra versão.
 
 ## Por que um vídeo de 10 segundos vira viral (ou não)
 
@@ -23,20 +31,11 @@ Tudo que você faz abaixo serve a essas três coisas.
 
 ## Antes de começar
 
-**Higgsfield conectado.** As ferramentas `mcp__Higgsfield__*` precisam estar disponíveis. Se não estiverem, pare e diga ao dono que precisa conectar o Higgsfield (conector do Claude) antes — sem ele não tem vídeo. Não tente gerar em outro lugar.
+**Higgsfield conectado.** A produção só acontece se o conector Higgsfield estiver conectado nesta sessão (procure as ferramentas dele na lista de ferramentas disponíveis). Se não estiver, diga ao dono que precisa conectar o Higgsfield nos conectores do Claude para sair vídeo. Enquanto isso, faça as Etapas 1 e 2 e entregue o brief e as 5 falas com direção: o dono grava com o celular ou volta depois com o conector ligado. Não tente gerar o vídeo em outro lugar.
 
-**Créditos.** Chame `balance` no início. Custo de referência por vídeo (8s, 9:16):
+**Sobre os nomes das ferramentas.** Os nomes citados nesta skill (`balance`, `media_upload_widget`, `generate_image_batch`, `jobs_wait`, `sandbox_exec` etc.) e os nomes de modelo (GPT Image 2.5, Seed Audio, Seedance 2.5) são os que o conector tinha quando o pipeline foi validado. Se na sua sessão os nomes forem outros, use a ferramenta equivalente que o conector oferece e avise o dono se um modelo mudou. Se não houver equivalente, diga que não há; não invente ferramenta.
 
-| Etapa | Modelo | Créditos |
-|---|---|---|
-| Imagem base (2 variantes) | GPT Image 2.5 Sunburst, high, 2k | ~5,5 |
-| Character sheet (1x por protagonista, reutilizável) | GPT Image 2.5 Sunburst | ~2,75 |
-| Voz (2 variantes) | Seed Audio 1.0 | ~1,8 |
-| Vídeo 8s 720p | Seedance 2.5 | 56 |
-| Vídeo 8s 1080p | Seedance 2.5 | 96 |
-| Vídeo 8s draft 480p | Seedance 2.5 | 24 |
-
-Um vídeo completo em 720p sai por ~65 créditos; 10s custa proporcionalmente mais. Sempre confirme com `get_cost: true` antes de gerar o vídeo e mostre o total ao dono. Se o saldo não cobre o vídeo em 720p, ofereça o draft 480p ou pare — nunca deixe o dono descobrir o custo depois.
+**Créditos.** Consulte o saldo no início (no pipeline validado, `balance`). Para a ordem de grandeza do custo por vídeo, leia `references/custos-higgsfield.md` (levantado em out/2026; preços mudam). O número que vale é o que a ferramenta mostrar: sempre consulte o custo antes de gerar o vídeo (no pipeline validado, `get_cost: true`) e mostre o total ao dono. Se o saldo não cobre o vídeo em 720p, ofereça o draft 480p ou pare. Nunca deixe o dono descobrir o custo depois.
 
 **Material do dono.** Peça só o que a produção precisa:
 - Protagonista com rosto: 4 a 6 fotos, rosto bem visível, ângulos diferentes (frente, 3/4, perfil), boa luz. Fotos de estúdio ou de celular, tanto faz — o que importa é ver o rosto.
@@ -48,7 +47,7 @@ Um vídeo completo em 720p sai por ~65 créditos; 10s custa proporcionalmente ma
 
 ## Etapa 1 — Entrevista: o brief do vídeo
 
-Duas rodadas de perguntas, no máximo quatro por rodada. Use `AskUserQuestion` quando disponível (opções + "outro"); senão, pergunte em texto. Se o dono já contou parte disso na conversa, não pergunte de novo — confirme.
+Duas rodadas de perguntas, no máximo quatro por rodada, em texto. Quando ajudar, dê opções numeradas mais "outro" para o dono responder rápido. Se o dono já contou parte disso na conversa, não pergunte de novo — confirme.
 
 **Rodada 1 — o negócio (é daqui que sai a copy):**
 1. O que você vende e pra quem? Uma frase, com cidade ou segmento. ("Restaurante de comida caseira em Botafogo, pra quem almoça na correria.")
@@ -105,7 +104,7 @@ Passou disso, a voz sai correndo ou o vídeo corta a frase. Corte a copy, não a
 7. *Antes e depois* — "Antes eu abria às 7. Hoje a loja abre sem mim."
 8. *Bastidor* — "Olha o que acontece aqui às 5 da manhã."
 9. *Chamada pelo nome do público* — "Se você é dono de clínica, isso é pra você."
-10. *Promessa com prazo* — "Em 20 minutos por semana seu caixa fecha diferente."
+10. *Promessa com prazo* — "Em 20 minutos por semana seu caixa fecha diferente." Só use se a promessa for verdadeira e o dono puder cumpri-la (Código de Defesa do Consumidor proíbe publicidade enganosa). Se o produto for de saúde, estética ou alimento, não prometa resultado nem prazo de efeito: siga as regras da Anvisa e do conselho profissional da área (a confirmar com o responsável técnico do negócio).
 
 **O que derruba uma fala:** jargão ("solução", "experiência", "qualidade"), adjetivo no lugar de fato, mais de uma ideia, CTA genérico ("clica no link"), promessa que o dono não deu na entrevista. Números só os que ele forneceu. Se a fala precisa de um número que ele não deu, pergunte — não invente.
 
@@ -127,7 +126,7 @@ Siga a ordem. Cada passo alimenta o próximo e cada um tem um checkpoint barato 
 
 Chame `media_upload_widget` (type `auto`, multiple, até 12 arquivos) como única ferramenta do turno e peça ao dono pra selecionar: fotos do protagonista, fotos do cenário e o áudio/vídeo de voz. O widget devolve os `media_id`. Não tente subir arquivos por outro caminho — o widget é o único que funciona a partir do computador do dono.
 
-Se a voz veio como vídeo, extraia o áudio no `sandbox_exec` do Higgsfield (tem ffmpeg e faster-whisper): baixe a URL da mídia (`show_medias` type video), corte o trecho falado, mono, `highpass=f=80` + `loudnorm=I=-18:TP=-1.5:LRA=9`, exporte mp3 128k, transcreva pra saber o que ele diz, e suba com `media_upload` (PUT no mesmo comando) + `media_confirm` type audio. Tudo em um comando só — o sandbox some entre chamadas.
+Se a voz veio como vídeo e o conector oferecer execução de comandos (no pipeline validado, o `sandbox_exec` do Higgsfield, que tinha ffmpeg e faster-whisper), extraia o áudio lá: baixe a URL da mídia (`show_medias` type video), corte o trecho falado, mono, `highpass=f=80` + `loudnorm=I=-18:TP=-1.5:LRA=9`, exporte mp3 128k, transcreva pra saber o que ele diz, e suba com `media_upload` (PUT no mesmo comando) + `media_confirm` type audio. Tudo em um comando só — o sandbox some entre chamadas. Se não houver execução de comandos, peça ao dono um áudio puro (mensagem de voz do WhatsApp serve) em vez do vídeo.
 
 ### Passo 1 — Imagem base
 
@@ -135,7 +134,7 @@ O que decide o realismo. Se a imagem base parece foto de celular, o vídeo conti
 
 - Modelo: `gpt_image_2_5`, `variant: sunburst`, `quality: high`, `resolution: 2k`, `aspect_ratio: 9:16`.
 - Referências (`image_references`): todas as fotos do protagonista + todas as fotos do cenário. Até 11 juntas funciona bem.
-- Prompt: template A do apêndice, com os slots preenchidos pela entrevista. A regra que faz funcionar é **separar os papéis das referências no prompt**: "o homem/a mulher é a pessoa das fotos de retrato; o ambiente é o das fotos do local — use as fotos do local SÓ para o ambiente, nunca para a pessoa em primeiro plano".
+- Prompt: template A de `references/prompts.md`, com os slots preenchidos pela entrevista. A regra que faz funcionar é **separar os papéis das referências no prompt**: "o homem/a mulher é a pessoa das fotos de retrato; o ambiente é o das fotos do local — use as fotos do local SÓ para o ambiente, nunca para a pessoa em primeiro plano".
 - Gere 2 variantes com `generate_image_batch`, espere com `jobs_wait`, mostre com `show_generation_by_ids`. **Checkpoint:** o dono escolhe. Guarde o `job_id` — ele entra direto como `start_image` no vídeo, sem novo upload.
 
 Não use Soul 2.0 para pessoa real: ele trata a foto como estilo, não como identidade, e devolve um modelo genérico. Testado.
@@ -147,39 +146,43 @@ Sem rosto: a imagem base é o produto ou o lugar, no mesmo modelo, com as fotos 
 Uma imagem dá um ângulo. O sheet dá ao modelo de vídeo a cabeça inteira, pra que o rosto continue sendo a mesma pessoa quando vira e fala.
 
 - Mesmo modelo e parâmetros do Passo 1. Referências: `job_id` da imagem base + fotos do protagonista.
-- Prompt: template B do apêndice. A regra que salva: **no quadrante de corpo inteiro, a cabeça fica fora do enquadramento**. Se o sheet tem uma cabeça pequena distante e uma grande, o Seedance escolhe errado e a pele vira plástico.
+- Prompt: template B de `references/prompts.md`. A regra que salva: **no quadrante de corpo inteiro, a cabeça fica fora do enquadramento**. Se o sheet tem uma cabeça pequena distante e uma grande, o Seedance escolhe errado e a pele vira plástico.
 - Faça uma vez por protagonista e reutilize em todos os vídeos seguintes (guarde o `job_id`).
 
 Sem rosto: pule este passo.
 
 ### Passo 3 — Voz
 
-Separar "gerar a voz" de "gerar o vídeo" é o que dá controle: o áudio custa menos de 1 crédito, dá pra ouvir e transcrever antes de gastar 56 no vídeo, e o Seedance só precisa sincronizar o labial.
+Separar "gerar a voz" de "gerar o vídeo" é o que dá controle: o áudio custa bem menos que o vídeo (veja `references/custos-higgsfield.md`), dá pra ouvir e transcrever antes de gastar no vídeo, e o Seedance só precisa sincronizar o labial.
 
 - Modelo: `seed_audio`, `format: mp3`, `sample_rate: 44100`. Prompt = a fala escolhida, com pontuação (ela vira pausa).
 - Com áudio do dono: passe o `media_id` do áudio como `audio_references` — clone one-shot do timbre dizendo a fala nova.
 - Sem áudio: `list_voices`, escolha um preset em português do Brasil compatível (gênero, idade) e passe `voice_type: preset` + `voice_id`.
-- Gere 2 variantes com `generate_audio_batch`. No `sandbox_exec`, baixe as duas, meça a duração (`ffprobe`) e transcreva (faster-whisper, `language="pt"`). A fala precisa terminar pelo menos 0,4s antes do fim do vídeo; se estourar, corte a copy ou suba a duração (8 → 10). Escolha a versão com pausas mais naturais (`silencedetect` mostra onde estão) e guarde o `job_id`.
+- Gere 2 variantes com `generate_audio_batch`. Se houver execução de comandos no conector, baixe as duas, meça a duração (`ffprobe`) e transcreva (faster-whisper, `language="pt"`); se não houver, mostre as duas ao dono, peça que ouça e confirme a duração aproximada. A fala precisa terminar pelo menos 0,4s antes do fim do vídeo; se estourar, corte a copy ou suba a duração (8 → 10). Escolha a versão com pausas mais naturais (`silencedetect` mostra onde estão) e guarde o `job_id`.
 
 ### Passo 4 — O vídeo
 
 - Modelo: `seedance_2_5`, `mode: omni_reference`, `aspect_ratio: 9:16`, `duration` = a escolhida, `resolution: 720p` (padrão), `bitrate_mode: high`, `generate_audio: true`.
 - Mídias: `start_image` = imagem base · `image_references` = character sheet + 1 foto do cenário · `audio_references` = a voz do Passo 3.
-- Prompt: template C (pessoa) ou D (sem rosto) do apêndice, com a direção por frase da copy escolhida. A instrução que faz o áudio virar a trilha exata: "the provided reference audio is the exact spoken line of this video — the man/woman says exactly what is in the reference audio, in that voice, with perfect lip synchronization; do not invent other dialogue and do not add music."
-- Antes de gerar: `get_cost: true` com as mesmas mídias, mostre o custo e o saldo, e peça o "vai". 720p é o padrão porque serve pra Reels (a plataforma comprime) e deixa margem pra uma segunda tentativa; 1080p só se o dono pedir e o saldo permitir; draft 480p quando o orçamento é curto ou pra validar performance antes da versão final.
+- Prompt: template C (pessoa) ou D (sem rosto) de `references/prompts.md`, com a direção por frase da copy escolhida. A instrução que faz o áudio virar a trilha exata: "the provided reference audio is the exact spoken line of this video — the man/woman says exactly what is in the reference audio, in that voice, with perfect lip synchronization; do not invent other dialogue and do not add music."
+- Antes de gerar: consulte o custo com as mesmas mídias (no pipeline validado, `get_cost: true`), mostre o custo e o saldo, e peça o "vai". 720p é o padrão porque serve pra Reels (a plataforma comprime) e deixa margem pra uma segunda tentativa; 1080p só se o dono pedir e o saldo permitir; draft 480p quando o orçamento é curto ou pra validar performance antes da versão final.
 - Se o Higgsfield responder com sugestão de preset (ex.: "IN THE DARK"), recuse com `declined_preset_id` e gere literal — presets mudam a estética.
 - Se responder `unlim_choice`, pergunte ao dono se quer usar as gerações ilimitadas do plano dele.
-- Espere com `jobs_wait` (leva 3 a 6 minutos; entre chamadas, aguarde 60 a 120s com o shell local em vez de martelar o poll).
+- Espere com `jobs_wait` (no vídeo de validação levou de 3 a 6 minutos). Não fique consultando o status sem parar: espere entre uma consulta e outra e avise o dono que está gerando.
 
 ### Passo 5 — Controle de qualidade antes de mostrar
 
-No `sandbox_exec`, em um comando: baixe o mp4, `ffprobe` (duração, resolução, faixa de áudio), extraia e transcreva o áudio (a fala saiu inteira e certa?), extraia 9 frames (0s ao fim) e monte um contact sheet com Pillow (o `montage` do ImageMagick aborta lá), suba o sheet com `media_upload` + `media_confirm` e olhe. Verifique: mesma pessoa em todos os frames, boca mexendo na fala, cenário coerente, nenhum celular aparecendo no reflexo, nada de texto/legenda queimada. Se algo falhou, diga o que e proponha a correção mais barata (trocar o start frame, reforçar uma frase do prompt, ou draft 480p pra testar) antes de gastar de novo.
+Se houver execução de comandos no conector, em um comando: baixe o mp4, `ffprobe` (duração, resolução, faixa de áudio), extraia e transcreva o áudio (a fala saiu inteira e certa?), extraia 9 frames (0s ao fim) e monte um contact sheet com Pillow (o `montage` do ImageMagick aborta lá), suba o sheet com `media_upload` + `media_confirm` e olhe. Verifique: mesma pessoa em todos os frames, boca mexendo na fala, cenário coerente, nenhum celular aparecendo no reflexo, nada de texto/legenda queimada. Sem execução de comandos, assista ao resultado mostrado pelo conector e peça ao dono que confira os mesmos pontos antes de postar. Se algo falhou, diga o que e proponha a correção mais barata (trocar o start frame, reforçar uma frase do prompt, ou draft 480p pra testar) antes de gastar de novo.
 
 Mostre o vídeo com `job_display`.
 
 ## Etapa 4 — Entrega
 
-Use este formato:
+A entrega vai no chat, com o link do vídeo gerado pelo conector. Se o dono pedir o brief, as falas e as legendas em arquivo, gere o arquivo e entregue para ele baixar. No chat do Claude, salve na pasta de saída da sessão; no Claude Code, salve na pasta atual do projeto. Se não for possível gerar arquivo, entregue o conteúdo completo no chat, em Markdown.
+
+Sem o conector Higgsfield, entregue o Brief do vídeo, a fala escolhida com a direção por frase e as legendas, e diga ao dono como gravar no celular seguindo a direção (selfie andando pelo lugar, primeira palavra já sendo dita, sem logo nos 3 primeiros segundos).
+
+Com vídeo gerado, use este formato:
 
 ```
 VÍDEO PRONTO — [nome do negócio]
@@ -202,10 +205,10 @@ Pra postar bem:
 
 Gasto: [x] créditos · saldo [y].
 Guardados pra próxima: imagem base [id] · character sheet [id] · voz [id].
-Próximo vídeo do mesmo protagonista custa só voz + vídeo (~57 créditos em 720p): manda a nova dor que eu escrevo outras 5 falas.
+Próximo vídeo do mesmo protagonista custa só voz + vídeo (confiro o custo na hora): manda a nova dor que eu escrevo outras 5 falas.
 ```
 
-Se o dono quiser iterar, do mais barato pro mais caro: trocar a fala (0,9 + vídeo) · testar em draft 480p (24) · gerar a final em 1080p (96).
+Se o dono quiser iterar, do mais barato pro mais caro: trocar a fala (voz + vídeo) · testar em draft 480p · gerar a final em 1080p. Mostre o custo de cada opção consultando a ferramenta antes.
 
 ## Regras que não se negociam
 
@@ -214,41 +217,3 @@ Se o dono quiser iterar, do mais barato pro mais caro: trocar a fala (0,9 + víd
 - Na copy, só fatos que o dono deu. Sem número inventado, sem promessa que ele não fez.
 - Um vídeo, uma ideia, um CTA.
 - Marcar IA quando a plataforma pedir. Nunca sugerir esconder.
-
-## Apêndice — templates de prompt
-
-Preencha os `[SLOTS]` com a entrevista. Escreva os prompts em inglês (os modelos rendem mais), a fala em português.
-
-### A — Imagem base (pessoa + cenário real)
-
-```
-A handheld close-up selfie photo taken on a smartphone front camera, held slightly above eye level. The [man/woman] is the person from the [N] portrait reference photos — preserve [his/her] exact facial identity, bone structure, hairline and expression lines: [DESCRIÇÃO FÍSICA CURTA: cabelo, barba/maquiagem, pele, olhos, acessórios]. [NACIONALIDADE/IDADE APROX], [PROFISSÃO]. [He/She] looks straight into the lens with a confident half-smile, lips slightly parted as if about to speak, eyebrows a touch raised, one shoulder slightly turned as if walking through the room. [He/She] wears [ROUPA DAS FOTOS]. The background is the exact real place shown in the [M] location reference photos — reproduce that environment faithfully and use those photos ONLY for the environment, never for the person in the foreground: [DESCRIÇÃO DO LOCAL: 4–6 elementos concretos visíveis nas fotos — balcão, mesas, prateleiras, paredes, luz, piso, pessoas do time ao fundo]. [LUZ: natural daylight from windows / warm indoor lighting in the evening, no daylight], soft light on the face, background slightly out of focus with shallow depth of field. Tightly cropped head-and-shoulders, face slightly off-centre, natural smartphone colour science, gentle digital softness, real skin texture with pores and fine lines, no retouching, no beauty filter, no smoothing. Candid, spontaneous and direct, like the first frame of a voice message to a friend. No text, no logos, no watermark.
-```
-
-Sem fotos do cenário: troque o trecho do "exact real place" por uma descrição do tipo de lugar, específica (tipo de balcão, o que tem na parede, que luz).
-
-### B — Character sheet
-
-```
-Character sheet of the [man/woman] from the reference photos — the same person shown in every provided image. Preserve [his/her] exact facial identity, bone structure, hairline and hair shape from the references — do not restyle, de-age or idealize [him/her]: [DESCRIÇÃO FÍSICA DETALHADA: cabelo, barba/maquiagem, pele, olhos, sobrancelhas, marcas, acessórios]. Keep [his/her] natural asymmetry, skin texture and any small marks from the references.
-Vertical 9:16 frame divided into an even 2×2 grid of four views of the same person. Top left, top right and bottom left are close-up head-and-shoulders views cut at the upper chest, all three at identical head size, identical eye-line and identical camera distance: top left, front view facing the lens; top right, [his/her] left-side profile; bottom left, [his/her] right-side profile. The bottom right quadrant is different — a front-facing full-body shot showing [his/her] entire outfit and figure from shoulders down to the feet, framed so the top of the frame cuts across at the neck and the head is not included, with the full length of the shoes visible and clean floor space beneath. Same neutral posture throughout — head level in the three portraits, shoulders relaxed and square, calm neutral expression with the mouth closed, gaze straight ahead; standing relaxed and upright in the full-body view, arms resting naturally at the sides, feet planted flat, roughly shoulder-width apart.
-Wardrobe identical across all four views, exactly as in the reference photos: [ROUPA COMPLETA: peça de cima, peça de baixo, calçado, relógio/pulseira/óculos]. Full-length outfit shown in the full-body quadrant.
-Seamless off-white studio backdrop, large soft frontal key with gentle fill from both sides, neutral white balance, soft shadow falloff under the jaw and a soft contact shadow beneath the shoes. 85mm lens at eye height for the portraits and a matching clean full-length framing for the body shot, no distortion, clean headroom in each quadrant, sharp throughout.
-Realistic skin with natural texture and tone variation, pores, fine lines and asymmetry kept, hair reading as separate strands rather than a smooth mass, visible fabric texture on the clothes, visible material texture on the shoes. No retouching or smoothing, no beauty lighting, no glamour styling, no stylization. No text, labels, borders or watermarks.
-```
-
-### C — Vídeo UGC selfie (pessoa falando, andando pelo cenário)
-
-```
-[DURAÇÃO]-second continuous single-take ultra-realistic UGC handheld front-facing selfie video. Use the provided start image as the exact first frame. Use the provided 2×2 character sheet as the identity reference for the [man's/woman's] face and outfit, and the provided location photo as the environment reference. The provided reference audio is the exact spoken line of this video: the [man/woman] says exactly what is in the reference audio, in that voice, with perfect natural lip synchronization to it; do not invent other dialogue and do not add music. Strict facial identity consistency: this is the same person in every frame — [DESCRIÇÃO FÍSICA CURTA], [ROUPA]. Maintain original outfit / hair / environment / lighting. [He/She] is walking alone through [CENÁRIO: his/her real shop / kitchen / clinic / workshop / office] at a purposeful everyday pace, roughly two footfalls per second, recording a message for [PÚBLICO]; the place naturally changes behind [him/her] as [he/she] moves past [3 ELEMENTOS DO LOCAL], while [his/her] identity and appearance remain completely consistent. At the start, the phone viewpoint rises naturally from the slightly low position shown in the start image toward normal chest-to-face selfie height as if [he/she] has just begun recording; the first words of the reference audio are already being spoken before the framing fully settles. The recording device itself must never appear in frame or in any reflection. 24–28mm equivalent smartphone front camera, continuous physically believable walk-synced wobble, small vertical footfall bounce, micro-jitters, arm sway, delayed imperfect corrections; [his/her] face constantly drifts naturally left/right and slightly high/low rather than remaining centered, sometimes about one-third off-center, with no artificial face tracking or stabilized lock. [LUZ: Natural available daylight; at approximately 3.0–3.5 seconds he/she passes a bright window and direct light strikes the lens, contrast briefly collapses, soft bloom washes across the upper frame, then smartphone auto-exposure recovers over about 0.6 seconds / Warm indoor lighting from ceiling spots, no daylight; at approximately 3.0–3.5 seconds he/she passes directly under a bright spotlight and the auto-exposure briefly overexposes then recovers over about 0.6 seconds], no flicker. Real skin texture with pores and fine lines; believable fabric movement, breathing, shoulder settling, walking biomechanics and changing background parallax with [PESSOAS/ELEMENTOS] moving naturally in the distance. Performance is direct, warm and slightly imperfect, like a voice message from [PAPEL: a founder / a chef / a doctor] to a friend who [PÚBLICO EM UMA FRASE]: as the selfie framing settles [he/she] takes a small breath, briefly glances to the side at [ALGO DO LOCAL], then returns [his/her] gaze to the lens and delivers the line from the reference audio. On the first sentence [DIREÇÃO FRASE 1]. On the second sentence [DIREÇÃO FRASE 2]. On the final sentence [DIREÇÃO FRASE 3 + CTA], and finishes with a small confident nod and a half-smile that reads as certainty, not salesmanship. Expression combines conviction, warmth and quiet authority, never theatrical. Natural blinking, tiny eye darts, subtle mouth asymmetry, realistic jaw/cheek movement and micro-pauses only where the speech naturally creates them. Perfect natural lip synchronization to the reference audio in Brazilian Portuguese; realistic mouth shapes and timing; jaw/cheek muscles move naturally. Audio: the reference voice, close smartphone-quality, clean but not studio-polished, mixed over quiet [SOM DO LOCAL: kitchen clatter / shop ambience / office room tone], soft footfalls, subtle clothing movement, no music, no artificial reverb, no robotic processing. Real-time motion only, no cuts, no slow motion, no speed ramps, no cinematic staging; prioritize identity stability, spontaneous human behavior, imperfect framing and believable physics throughout.
-Universal Negative Rules:
-no morphing, no flicker, no face distortion, no identity drift, no outfit change, no hairstyle change, no warped anatomy, no extra limbs, no duplicate people, no rubbery motion, no teleporting, no broken physics, no CGI look, no cartoon, no plastic skin, no skin smoothing, no AI glow, no beauty filter, no overexposed highlights, no unreal reflections, no melting objects, no jittery time-warp, no aggressive cinematic exaggeration, no unnatural camera float, no random style changes, no text artifacts, no garbled mouth movement, no off-sync lips, no English accent, no subtitles, no music
-```
-
-### D — Vídeo sem rosto (produto ou lugar, com narração)
-
-```
-[DURAÇÃO]-second continuous single-take ultra-realistic handheld smartphone video. Use the provided start image as the exact first frame and the provided location/product photos as the environment reference. The provided reference audio is the voice-over of this video: play it exactly as provided, no other dialogue, no music. The camera is held by the owner walking slowly through [CENÁRIO], revealing [3 ELEMENTOS CONCRETOS: o produto sendo feito / a prateleira / o balcão / o time trabalhando] as the shot moves; hands may enter the frame to [AÇÃO: pick up the product / open the oven / point at the sign]. 24–28mm equivalent smartphone camera, natural handheld wobble, small footfall bounce, imperfect framing, no stabilized lock. [LUZ do local], no flicker. Real textures — [MATERIAIS: bread crust, steel, fabric, wood] — visible up close. Audio: the reference voice-over mixed over quiet [SOM DO LOCAL], no music. Real-time motion only, no cuts, no slow motion, no speed ramps, no cinematic staging. No text, no logos, no watermark, no subtitles.
-Universal Negative Rules:
-no morphing, no flicker, no warped objects, no extra hands, no duplicate items, no rubbery motion, no teleporting, no broken physics, no CGI look, no cartoon, no AI glow, no overexposed highlights, no unreal reflections, no melting objects, no jittery time-warp, no unnatural camera float, no random style changes, no text artifacts, no music
-```

@@ -1,5 +1,5 @@
 // Estilo: motion-apple — UI "Apple widgets" (objetos que se transformam, mão-cursor, blob colorido que vaza do card)
-// com a IDV Motion Claude (preto/papel/laranja, Inter Tight). Gramática em STYLE.md.
+// com a paleta própria (preto/papel/laranja, Inter Tight). Gramática em STYLE.md.
 window.STYLE = {
   name: 'motion-apple',
   colors: { dark: '#0A0A0A', light: '#F5F3EE', accent: '#FF4D00', contrast: '#2340C8', card: '#141414' },

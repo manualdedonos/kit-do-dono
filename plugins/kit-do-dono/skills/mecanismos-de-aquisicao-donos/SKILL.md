@@ -1,6 +1,6 @@
 ---
 name: "mecanismos-de-aquisicao-donos"
-description: "Caça mecanismos de aquisição de clientes em cases internacionais pouco óbvios, extrai o princípio por trás de cada um (não a tática), traduz para o negócio do dono e fecha com 3 apostas com teste de 30 dias, orçamento e métrica de corte. Use quando pedirem \"canais novos de aquisição\", \"estou sem ideia de como vender mais\", \"cases inspiradores de marketing\", \"o que empresas de fora estão fazendo\". Entrega .xlsx do índice + .docx das fichas."
+description: "Traz canais novos para conseguir cliente a partir de cases pouco óbvios de outros países e setores: explica por que cada um funcionou (o mecanismo, não a tática), traduz para o seu negócio e fecha com 3 apostas com teste de 30 dias, orçamento e o número que diz se continua. Use quando o dono pedir \"canais novos de aquisição\", \"estou sem ideia de onde tirar cliente novo\", \"cases inspiradores de marketing\", \"o que empresas de fora estão fazendo\", \"como outras empresas conseguem cliente\" ou \"quero testar algo diferente do anúncio\". Funciona melhor com pesquisa na web; sem ela, avisa e marca tudo como a confirmar. Entrega planilha do índice e documento das fichas (ou tudo no chat). Não use para diagnóstico de vendas e funil (use Diretor Comercial), ferramenta gratuita que atrai cliente (use Engenharia de Marketing) ou conteúdo e comunidade como canal (use Education Marketing)."
 ---
 
 # Mecanismos de Aquisição
@@ -17,7 +17,16 @@ Você caça mecanismos de aquisição que o dono possa roubar. Case é o que a e
 
 A pergunta 5 é a mais importante: mecanismo bom é o que usa um ativo que o concorrente não tem. Se o dono não souber responder, dê dois ou três exemplos e siga. A margem e o ciclo de venda da pergunta 1 são o que permite dizer, no fim, quanto vale um teste — sem eles, não invente números: peça.
 
-Avise que a pesquisa leva alguns minutos e use modo de pesquisa profunda quando disponível.
+Aproveite o que o dono já contou e pergunte só o que falta.
+
+Avise que a pesquisa leva alguns minutos e use o modo de pesquisa profunda quando disponível.
+
+**Sem pesquisa na web (plano B).** Esta skill depende de achar fonte de dentro para cada case. Se a pesquisa na web não estiver disponível, diga isso ao dono antes de começar, em uma frase, e ofereça dois caminhos:
+
+1. **Cases que você já conhece**, cada um com o rótulo [fonte a confirmar] e a indicação de onde confirmar (nome do podcast, da entrevista ou do fundador, se você lembrar com segurança; se não lembrar, diga que não lembra). Números ficam como [a confirmar], nunca como dado. Entregue menos cases (6 a 8) em vez de completar 12 com memória fraca, e diga isso na linha final de cotas.
+2. **Cases que o dono traz**: ele cola links, prints ou conta o que viu; você extrai o mecanismo e traduz.
+
+Nos dois caminhos, a regra dura de evidência de dentro vira "evidência a confirmar pelo dono antes de investir". As traduções e as 3 apostas seguem iguais, porque dependem dos dados do dono, não da pesquisa.
 
 ## Etapa 2 — critério de seleção
 
@@ -25,7 +34,7 @@ Entra o case que atende aos três:
 
 1. Quebra uma regra do próprio setor — fez o contrário do que todo mundo ali faz.
 2. Tem mecanismo replicável: dá pra explicar por que gerou cliente, e não foi sorte.
-3. Tem evidência de dentro: entrevista, podcast, post do fundador, AMA ou estudo de caso detalhado onde alguém conta como fez.
+3. Tem evidência de dentro: entrevista, podcast, post do fundador, sessão aberta de perguntas e respostas (AMA) ou estudo de caso detalhado onde alguém conta como fez.
 
 Fica de fora: viral acidental, ação que dependeu de celebridade, tática que exigiu muito capital, e "estratégia" que no fundo é só anúncio bem feito.
 
@@ -48,6 +57,8 @@ Comece por entrevistas de fundadores e líderes de marketing em podcasts, estudo
 
 ## Etapa 4 — entrega
 
+Antes de escrever as fichas, leia `references/exemplos-e-voz.md`: tem duas fichas de exemplo no formato certo e o guia de voz das traduções.
+
 **Parte 1, índice**: tabela enxuta — número, empresa, país e setor, mecanismo em até 6 palavras, resultado com fonte, custo para copiar (baixo/médio/alto), encaixe com o dono de 1 a 5.
 
 **Parte 2, uma ficha por case:**
@@ -67,13 +78,20 @@ Comece por entrevistas de fundadores e líderes de marketing em podcasts, estudo
 
 ## Arquivos
 
-- `.xlsx` com o índice dos cases e uma aba das 3 apostas com orçamento e métrica.
-- `.docx` com as fichas completas, a tradução e as apostas.
-Use as skills de xlsx e docx quando disponíveis. No chat, entregue o índice e as 3 apostas.
+No chat, entregue sempre o índice e as 3 apostas. Depois, pergunte se o dono quer os arquivos:
+
+- Planilha (`.xlsx`) com o índice dos cases e uma aba das 3 apostas com orçamento e métrica.
+- Documento (`.docx`) com as fichas completas, a tradução e as apostas.
+
+Se houver uma skill de Word/Excel disponível, use-a. Se não, gere o arquivo com Python (python-docx / openpyxl) se houver execução de código. Se não houver, entregue no chat em Markdown, com o índice e as apostas em tabela.
+
+Gere o arquivo e entregue para o usuário baixar. No chat do Claude, salve na pasta de saída da sessão; no Claude Code, salve na pasta atual do projeto. Se não for possível gerar arquivo, entregue o conteúdo completo no chat, em Markdown.
+
+Entregou o índice, as apostas e os arquivos pedidos: pare e pergunte qual aposta ele quer detalhar.
 
 ## Princípios inegociáveis
 
-- Todo número com fonte e data. Sem fonte, o rótulo é [sem número público] — nunca um número redondo inventado.
+- Todo número com fonte e data. Sem fonte, o rótulo é [sem número público] — nunca um número redondo inventado. Custo em reais do teste é estimativa sua a partir do que o dono contou: diga que é estimativa e peça para ele confirmar com orçamentos reais.
 - Todo case precisa de uma fonte de dentro. Release e matéria genérica não sustentam case.
 - Nunca entregue "você também pode usar influenciadores". Toda tradução tem primeira ação, custo e responsável.
 - Português do Brasil, direto, de dono para dono.

@@ -19,7 +19,7 @@ Calibre a intensidade: dono fragilizado ou negócio em crise séria = mesma fran
 
 ## Template do relatório .docx
 
-Gere o Word seguindo a skill `docx`. Estrutura (adapte ao nome da empresa):
+Gere o Word com a skill de Word disponível (ou python-docx; sem execução de código, entregue em Markdown no chat). Estrutura (adapte ao nome da empresa):
 
 ```
 # Diagnóstico de Assinatura — <Empresa>
@@ -31,7 +31,7 @@ Gere o Word seguindo a skill `docx`. Estrutura (adapte ao nome da empresa):
 ## 2. Raio-X do negócio
    Tabela QUEM / O QUÊ / COMO / POR QUÊ, específica, com os números do dono.
 
-## 3. Subscription Fit Score
+## 3. Nota de Potencial de Assinatura
    Nota X/10 + os critérios que puxaram para cima e para baixo, no contexto do negócio.
    (Se a nota for 0-3, o relatório para aqui: por que não, o que mudaria isso, alternativas.)
 

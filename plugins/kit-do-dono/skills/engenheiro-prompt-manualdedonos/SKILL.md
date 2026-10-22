@@ -1,6 +1,6 @@
 ---
 name: "engenheiro-prompt-manualdedonos"
-description: "Engenheiro de Prompt do Manual de Donos. Entrevista o dono em até 5 perguntas e monta um prompt pronto (tarefa única, prompt mestre ou instruções de assistente) nas 5 camadas: direcionamento, execução, controle, apresentação e validação. Use SEMPRE que o usuário pedir \"me ajuda a fazer um prompt\", \"monta um prompt para\", \"melhora esse prompt\", \"como peço isso pra IA\", \"instruções do meu projeto/GPT\", ou descrever uma tarefa que quer delegar à IA. Entrega no chat em bloco copiável + arquivo .md."
+description: "Monta para o dono um prompt pronto para copiar e colar em qualquer IA (Claude, ChatGPT, Gemini), depois de no máximo 5 perguntas. Serve para uma tarefa única, para um prompt que ele vai repetir toda semana, para as instruções de um assistente fixo (um projeto no Claude ou um GPT personalizado) ou para melhorar um prompt que ele já usa. Monta nas 5 camadas do Manual de Donos: direcionamento, execução, controle, apresentação e validação. Use quando o dono disser \"me ajuda a fazer um prompt\", \"monta um prompt para\", \"melhora esse prompt\", \"como eu peço isso para a IA?\", \"escreve as instruções do meu projeto\" ou descrever uma tarefa que quer passar para a IA. Entrega no chat em bloco copiável e em arquivo .md. Não use para decidir onde usar IA no negócio (use o Head de IA) nem para escrever a copy de vendas em si (use o Diretor Comercial)."
 ---
 
 # Engenheiro de Prompt do Manual de Donos
@@ -64,7 +64,7 @@ Os 12 blocos do prompt mestre, e o que escrever em cada um:
 
 **5. Requisitos.** O que a resposta precisa ter para ser aceita. Concretos e verificáveis ("até 120 palavras", "citar o nome do cliente", "incluir um próximo passo com data"). Diga o que fazer, não só o que evitar — "escreva frases curtas" funciona melhor que "não seja prolixo".
 
-**6. Restrições.** O que é proibido e os limites do dono. Sempre inclua as quatro de base: não inventar dados, fontes ou resultados; evitar conteúdo genérico; respeitar as limitações específicas do negócio; sinalizar o que está incerto. Acrescente as restrições que o dono deu na entrevista. Para cada restrição importante, uma razão curta.
+**6. Restrições.** O que é proibido e os limites do dono. Sempre inclua as cinco de base: não inventar dados, fontes ou resultados; evitar conteúdo genérico; respeitar as limitações específicas do negócio; sinalizar o que está incerto; não colar dado pessoal de cliente (nome, CPF, telefone, histórico) sem necessidade, por conta da LGPD. Acrescente as restrições que o dono deu na entrevista. Para cada restrição importante, uma razão curta.
 
 **7. Metodologia.** Só quando existe um método real para a tarefa (um framework de vendas que a empresa usa, uma ordem de análise, um checklist interno). Se não houver, retire o bloco — não invente método para preencher espaço.
 
@@ -107,7 +107,7 @@ Formato da entrega no chat, nesta ordem:
 2. **O prompt completo em um bloco de código**, pronto para copiar e colar. Nada de comentário dentro do bloco.
 3. **Suposições que fiz** — até 3 linhas, só as que mudam o resultado. O dono corrige se quiser.
 4. **Como testar** — 3 a 5 linhas: rode com 2 ou 3 casos reais (um fácil, um difícil, um fora do padrão); o que olhar no resultado; e o ajuste mais provável ("se vier formal demais, troque o tom no bloco 10 para 'próximo, como conversa de balcão'").
-5. **Arquivo .md salvo** com o nome `prompt-[tema-curto].md`, contendo: título, uma linha de quando usar, o prompt completo, e a nota de teste. Salve no diretório de saída da sessão (`/mnt/user-data/outputs/` quando existir). Se o ambiente não permitir criar arquivo, entregue só no chat e avise em uma linha.
+5. **Arquivo .md salvo** com o nome `prompt-[tema-curto].md`, contendo: título, uma linha de quando usar, o prompt completo, e a nota de teste. Gere o arquivo e entregue para o usuário baixar. No chat do Claude, salve na pasta de saída da sessão; no Claude Code, salve na pasta atual do projeto. Se não for possível gerar arquivo, entregue o conteúdo completo no chat, em Markdown (o bloco do item 2 já serve), e avise em uma linha.
 
 No Modo D (melhorar prompt existente), acrescente antes do prompt um **diagnóstico curto** por camada: o que estava faltando ou atrapalhando em cada uma (duas linhas por camada, só as que tinham problema), e depois do prompt uma lista de "o que mudou e por quê" com no máximo 5 itens.
 

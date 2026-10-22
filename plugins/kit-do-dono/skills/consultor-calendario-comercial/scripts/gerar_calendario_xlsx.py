@@ -5,13 +5,20 @@ Gera a planilha "Calendário Comercial" (.xlsx) a partir de um JSON.
 Uso:
     python3 gerar_calendario_xlsx.py dados.json "Calendario_Comercial_Negocio.xlsx"
 
-Requer: openpyxl  (pip install openpyxl --break-system-packages)
+Requer: Python 3 e openpyxl.
+
+Sempre gera as 4 abas: Calendário, Datas Próprias, Plano de Preparação e
+Indicadores. Se "datas_proprias" ou "preparacao" vierem vazios, a aba é
+criada mesmo assim: Datas Próprias com uma linha "a preencher" e Plano de
+Preparação com uma linha por ativação do calendário (campanha e início da
+preparação preenchidos a partir do calendário, demais etapas "a definir").
 
 ----------------------------------------------------------------------
 FORMATO DO JSON DE ENTRADA
 ----------------------------------------------------------------------
 Todos os campos de texto são livres. Só "calendario" é obrigatório; as
-demais seções são opcionais mas recomendadas.
+demais seções são opcionais mas recomendadas (sem elas, as abas saem com
+linhas "a preencher" / "a definir").
 
 {
   "negocio": "Farmácia São João",            # nome do negócio (cabeçalho)
@@ -170,8 +177,10 @@ def aba_calendario(wb, dados):
 
 def aba_datas_proprias(wb, dados):
     global _KEYS
-    if not dados.get("datas_proprias"):
-        return
+    linhas = dados.get("datas_proprias") or [
+        {"nome": "A preencher", "periodo": "", "porque": "Proponha pelo menos 3 datas próprias, de preferência sobre os vales.",
+         "vale": "", "oferta": ""},
+    ]
     ws = wb.create_sheet("Datas Próprias")
     start = _title_block(ws, "Datas Próprias — as que você cria do zero",
                          "Onde não há concorrente: você define a regra, a oferta e a história.", ncols=5)
@@ -179,13 +188,27 @@ def aba_datas_proprias(wb, dados):
                "Vale que preenche", "Oferta / experiência"]
     _KEYS = ["nome", "periodo", "porque", "vale", "oferta"]
     widths = [26, 18, 34, 26, 34]
-    _write_table(ws, start, headers, dados["datas_proprias"], widths)
+    _write_table(ws, start, headers, linhas, widths)
 
 
 def aba_preparacao(wb, dados):
     global _KEYS
-    if not dados.get("preparacao"):
-        return
+    linhas = dados.get("preparacao")
+    if not linhas:
+        # Sem bloco de preparação: uma linha por ativação, etapas a definir.
+        linhas = []
+        for item in dados.get("calendario", []):
+            linhas.append({
+                "campanha": item.get("data") or item.get("conceito") or "A preencher",
+                # "preparar" = quando começar a preparar: é a primeira etapa.
+                "definir_oferta": item.get("preparar") or "a definir",
+                "estoque": "a definir",
+                "alinhar_time": "a definir",
+                "iniciar_comunicacao": "a definir",
+                "medir": "a definir",
+            })
+        if not linhas:
+            linhas = [{"campanha": "A preencher"}]
     ws = wb.create_sheet("Plano de Preparação")
     start = _title_block(ws, "Plano de Preparação — de trás para frente",
                          "A venda boa nasce semanas antes da data.", ncols=6)
@@ -194,7 +217,7 @@ def aba_preparacao(wb, dados):
     _KEYS = ["campanha", "definir_oferta", "estoque", "alinhar_time",
              "iniciar_comunicacao", "medir"]
     widths = [24, 18, 20, 16, 20, 18]
-    _write_table(ws, start, headers, dados["preparacao"], widths)
+    _write_table(ws, start, headers, linhas, widths)
 
 
 def aba_indicadores(wb, dados):

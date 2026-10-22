@@ -62,12 +62,12 @@ Para diagnóstico com várias dimensões, some por dimensão, mostre a dimensão
 ## Captura do contato
 
 - **Padrão (funciona em qualquer lugar):** o resultado mostra o botão de WhatsApp que abre `https://wa.me/<numero_do_dono>?text=<mensagem>` com nome, respostas e resultado. O contato chega ao dono quando o cliente toca no botão; por isso o botão precisa de um motivo claro (receber o orçamento, reservar, ganhar o desconto, falar com especialista).
-- **Avançado (só com a página hospedada no site do negócio):** além do WhatsApp, enviar os dados para uma planilha ou CRM por um webhook que o dono já tenha (Google Apps Script, Make, n8n, Zapier). Faça com `fetch(URL, { method: "POST", mode: "no-cors", body: JSON.stringify(dados) })` disparado ao confirmar o contato, sem travar a tela se falhar. Páginas publicadas pelo próprio Claude bloqueiam esse envio: nelas, use só o WhatsApp.
+- **Avançado (só com a página hospedada no site do negócio):** além do WhatsApp, enviar os dados para uma planilha ou CRM por um webhook que o dono já tenha (Google Apps Script, Make, n8n, Zapier). Faça com `fetch(URL, { method: "POST", mode: "no-cors", body: JSON.stringify(dados) })` disparado ao confirmar o contato, sem travar a tela se falhar. Páginas publicadas por plataformas de terceiros (inclusive pelo próprio Claude) podem restringir esse envio; nelas, use só o WhatsApp e teste antes de contar com o webhook.
 - Consentimento sempre visível e obrigatório antes de enviar dados (LGPD). Não colete CPF, endereço completo ou dado de saúde detalhado.
 
 ## Publicação
 
-- **Link do Claude:** publique pelo próprio Claude, quando disponível, e copie o link. É o caminho mais rápido.
+- **Link do Claude:** se o ambiente oferecer publicação de página com link, publique e copie o link. É o caminho mais rápido.
 - **Site do negócio:** suba o arquivo `.html` na hospedagem do site (ou peça ao responsável pelo site) e use um endereço curto, ex.: `seusite.com.br/calculadora`.
 - Nos dois casos, teste no celular antes de divulgar.
 

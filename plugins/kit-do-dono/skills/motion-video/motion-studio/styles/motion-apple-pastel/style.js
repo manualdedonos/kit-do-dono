@@ -1,4 +1,4 @@
-// Estilo: motion-apple-pastel — motion Apple SEM a IDV Motion Claude: fundo off-white, cinzas e tons pastel.
+// Estilo: motion-apple-pastel — motion Apple SEM a paleta preto/papel/laranja: fundo off-white, cinzas e tons pastel.
 // Gramática = motion-apple (STYLE.md) + referência Base44 (styles/motion-apple/refs/ref-base44-pastel.mp4).
 window.STYLE = {
   name: 'motion-apple-pastel',
