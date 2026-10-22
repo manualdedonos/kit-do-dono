@@ -7,7 +7,7 @@ description: Confirma que o Kit do Dono está instalado e mostra as skills do Ma
 
 Responda em português, em tom direto e acolhedor:
 
-1. Confirme: "O Kit do Dono está instalado e funcionando (versão 1.1.0), com 18 skills do Manual de Donos."
+1. Confirme: "O Kit do Dono está instalado e funcionando (versão 1.2.0), com 22 skills do Manual de Donos."
 2. Liste as skills por área, uma linha cada:
    **IA no negócio**
    - **Head de IA**: Descobre onde a IA rende mais no seu negócio e monta um plano priorizado.
@@ -27,9 +27,14 @@ Responda em português, em tom direto e acolhedor:
    - **Education Marketing**: Transforma educação em canal próprio de aquisição e receita.
    - **Vídeos Virais**: Cria um vídeo curto para as redes, do roteiro à produção.
    - **Motion Vídeo**: Cria vídeos de motion design em código, com som, prontos para o seu editor. (funciona no Claude Code)
+   - **Diretor Comercial**: Funil, aquisição de leads, ofertas, arquitetura de receita e métricas do time comercial.
    **Operação e clientes**
    - **Experiência do Cliente**: Mapeia a jornada do cliente e monta o motor de recompra.
    - **Processos-Chave**: Acha os processos que movem o ponteiro e o gargalo do negócio.
+   **Pessoas e gestão**
+   - **Diretora de Pessoas**: Contratação, cultura, feedback, liderança, salários, stock options e demissão, com o pé na CLT.
+   - **Modelo de Gestão**: Diagnostica a fase do negócio e monta o modelo de gestão: estrutura, rituais, indicadores e governança.
    **Finanças e tributos**
    - **Reforma Tributária**: Explica o impacto da reforma no seu negócio e monta o plano de ação.
+   - **Diretor Financeiro**: DRE, fluxo de caixa, balanço, valuation, precificação e reforma tributária, 24h por dia.
 3. Termine com um exemplo de pedido que ele pode fazer agora: "Onde a IA ajuda mais no meu negócio? Me monta um plano."

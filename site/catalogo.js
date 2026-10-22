@@ -1,5 +1,5 @@
 // Gerado por scripts/gerar.py a partir de catalogo.json. Não edite à mão.
-export const AREAS = ["IA no negócio", "Estratégia", "Vendas e marketing", "Operação e clientes", "Finanças e tributos"];
+export const AREAS = ["IA no negócio", "Estratégia", "Vendas e marketing", "Operação e clientes", "Pessoas e gestão", "Finanças e tributos"];
 export const SKILLS = [
   {
     "nome": "Head de IA",
@@ -109,5 +109,29 @@ export const SKILLS = [
     "area": "Finanças e tributos",
     "paraQue": "Explica o impacto da reforma no seu negócio e monta o plano de ação.",
     "exemplo": "Como a reforma tributária afeta o meu negócio?"
+  },
+  {
+    "nome": "Diretor Financeiro",
+    "area": "Finanças e tributos",
+    "paraQue": "DRE, fluxo de caixa, balanço, valuation, precificação e reforma tributária, 24h por dia.",
+    "exemplo": "Me ajuda a montar a DRE do meu negócio."
+  },
+  {
+    "nome": "Diretor Comercial",
+    "area": "Vendas e marketing",
+    "paraQue": "Funil, aquisição de leads, ofertas, arquitetura de receita e métricas do time comercial.",
+    "exemplo": "Meu funil de vendas está travado. Por onde eu começo?"
+  },
+  {
+    "nome": "Diretora de Pessoas",
+    "area": "Pessoas e gestão",
+    "paraQue": "Contratação, cultura, feedback, liderança, salários, stock options e demissão, com o pé na CLT.",
+    "exemplo": "Preciso contratar meu primeiro gerente. Como eu faço?"
+  },
+  {
+    "nome": "Modelo de Gestão",
+    "area": "Pessoas e gestão",
+    "paraQue": "Diagnostica a fase do negócio e monta o modelo de gestão: estrutura, rituais, indicadores e governança.",
+    "exemplo": "Como eu monto o modelo de gestão da minha empresa?"
   }
 ];

@@ -14,6 +14,18 @@ areas_invalidas = [s["id"] for s in cat["skills"] if s["area"] not in cat["areas
 if areas_invalidas:
     sys.exit(f"Área fora da lista em: {areas_invalidas}")
 
+# Material compartilhado (ex.: a linguagem do Rony) mora uma vez em compartilhado/ e é copiado
+# para dentro de cada skill que o declara em "referencias": a skill instalada precisa ter o arquivo.
+import shutil
+for s in cat["skills"]:
+    for ref in s.get("referencias", []):
+        origem = os.path.join(RAIZ, "compartilhado", ref)
+        if not os.path.isfile(origem):
+            sys.exit(f"{s['id']}: referência compartilhada inexistente: {ref}")
+        destino = os.path.join(pasta_skills, s["id"], "references")
+        os.makedirs(destino, exist_ok=True)
+        shutil.copyfile(origem, os.path.join(destino, ref))
+
 versao = json.load(open(os.path.join(RAIZ, "plugins", "kit-do-dono", ".claude-plugin", "plugin.json")))["version"]
 linhas = []
 for area in cat["areas"]:
